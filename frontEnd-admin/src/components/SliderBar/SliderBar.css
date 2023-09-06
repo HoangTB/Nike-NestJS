@@ -1,0 +1,168 @@
+
+a{
+  text-decoration: none;
+}
+.sidebar-wrappers {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 300px;
+  background-color: #ffffff;
+  padding: 10px 0 20px;
+  z-index: 1;
+  box-shadow: 0 5px 11px rgba(214, 212, 212, 0.8);
+  border-right: 1px solid rgb(245, 245, 245);
+  padding: 5px 10px 5px 10px;
+
+}
+
+.sidenav-logo-admin {
+  width:100px;
+}
+
+.logo {
+  text-align: center;
+  padding: 0 20px 30px;
+}
+
+.logo-admin {
+  font-weight: 700;
+  font-size: 30px;
+  margin-top: 20px;
+  text-align: center;
+  color: rgb(0, 0, 0) !important;
+}
+
+.list-manager {
+  display: flex;
+  flex-direction: column;
+  padding: 0 !important;
+  list-style-type: none;
+  gap: 5px;
+
+}
+
+.list-manager li {
+  border: 1px solid rgba(148, 148, 148, 0.989);
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.989);
+
+}
+
+.list-manager li a {
+  color: rgb(0, 0, 0);
+  padding: 10px 0px 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+}
+
+.list-manager li a:hover {
+
+  color: #ffffff;
+
+}
+
+.list-manager li a.active {
+  color: rgb(255, 255, 255);
+}
+
+.list-manager li:hover {
+  background-color: rgba(175, 175, 175, 0.989);
+  cursor: pointer;
+
+
+}
+
+.list-manager li.active {
+  background-color: rgba(175, 175, 175, 0.989);
+
+
+
+
+}
+
+.list-manager li span {
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.sign-out {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  
+}
+.sign-out b {
+  font-size: 24px;
+  color: rgb(0, 0, 0);
+}
+
+.btn-sign-out {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: rgba(255, 255, 255, 0.989);
+  border-left: 3px solid #fff;
+  margin: 0;
+  padding: 10px 10px;
+  border: none;
+  border-radius: 10px;
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+  border: 1px solid rgba(148, 148, 148, 0.989);
+}
+
+.btn-sign-out:hover {
+  background-color: rgba(175, 175, 175, 0.989);
+  color: rgb(255, 255, 255);
+}
+
+.fa-solid {
+  font-size: 20px !important;
+  position: absolute;
+  left: 20px;
+}
+.quantity-history{
+  background-color: rgb(255, 37, 37);
+  right: -10px;
+  top: -10px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  color: white;
+  text-align: center;
+}
+@media (max-width:1200px) {
+  .sidebar-wrappers {
+    width: 60px;
+  }
+
+  .list-manager li span {
+    display: none;
+  }
+
+  .logo-admin span {
+    display: none;
+  }
+
+  .btn-sign-out span {
+    display: none;
+  }
+
+  .btn-sign-out {
+    font-size: 20px;
+   
+  }
+  .sidenav-logo-admin{
+    display: none;
+  }
+  .sign-out b{
+    display: none;
+  }
+}

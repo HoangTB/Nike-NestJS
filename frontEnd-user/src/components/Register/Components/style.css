@@ -1,0 +1,205 @@
+.form-login {
+  min-height: 45vh;
+}
+.checkbox-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  background-color: #fff;
+  border: 2px solid #bbb;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-container .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 4px;
+  height: 9px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.register-panel-form input {
+  padding: 10px !important;
+}
+.login-panel-form input {
+  padding: 10px !important;
+}
+
+.form-login {
+  margin: 50px 0 60px 0;
+}
+/*  */
+
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;400&display=swap");
+
+*:focus {
+  outline: none;
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.637);
+  z-index: 20;
+}
+
+.Modal {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+  background-color: white;
+  transform: translate(-50%, -50%);
+  transition: all 0.4s;
+  z-index: 20;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.nike-unite-swoosh {
+  margin-top: 4px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.header-text {
+  font-weight: 800;
+  font-size: 16px;
+  text-align: center;
+  margin: 20px;
+}
+
+.header-text span {
+  font-size: 20px;
+  font-family: "Oswald", sans-serif;
+}
+
+.login-panel-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-panel-form input {
+  padding-left: 4px;
+  font-size: 12px;
+  border: 1px solid;
+  color: #ccc;
+  width: 240px;
+  padding-top: 4px;
+  margin-top: 4px;
+  border-radius: 4px;
+  outline: none;
+}
+
+.login-panel-form .login-panel-desc {
+  font-size: 10px;
+  margin-top: 4px;
+  text-align: center;
+  color: #888;
+}
+
+.login-panel-form .login-panel-button {
+  margin-top: 4px;
+  padding: 5px 8px;
+  background-color: black;
+  color: white;
+  border-radius: 4px;
+  font-weight: 800;
+  font-size: 14px;
+  font-family: "Oswald", sans-serif;
+}
+
+.register-panel-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-panel-form input {
+  padding-left: 4px;
+  font-size: 12px;
+  border: 1px solid;
+  color: #ccc;
+  width: 240px;
+  padding-top: 4px;
+  margin-top: 4px;
+  border-radius: 4px;
+}
+
+.register-panel-form .register-panel-desc {
+  font-size: 10px;
+  margin-top: 4px;
+  text-align: center;
+  color: #888;
+}
+
+.register-panel-form .register-panel-button {
+  margin-top: 4px;
+  padding: 5px 8px;
+  background-color: black;
+  color: white;
+  border-radius: 4px;
+  font-weight: 800;
+  font-size: 14px;
+  font-family: "Oswald", sans-serif;
+}
+
+.register-panel-form #country {
+  margin-top: 4px;
+  padding-left: 4px;
+  font-size: 12px;
+  padding-top: 4px;
+  color: #888;
+  border: 1px solid;
+  border-radius: 4px;
+  -webkit-appearance: none;
+}
+.error {
+  font-size: 12px;
+  color: red;
+  margin: 0 0 0 5px;
+}
+.text-logres {
+  font-weight: 500;
+  cursor: pointer;
+}

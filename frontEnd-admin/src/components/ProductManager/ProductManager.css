@@ -1,0 +1,127 @@
+.content-user {
+    margin-left: 320px;
+   }
+   
+   .table-content {
+     background-color: #fff;
+     padding: 20px;
+   }
+
+   table{
+     border: none;
+     border-collapse: collapse;
+   }
+   
+   table thead tr {
+     border-bottom: 1px solid #dddbdb;
+
+   }
+   
+   table thead tr th {
+     font-size: 18px;
+     color: #000000;
+     padding: 14px 14px;
+   }
+   
+   table tbody tr td {
+     padding: 14px 14px;
+     color: #84888B;
+     font-size: 15px;
+     font-weight: 600;
+
+   }
+
+   
+   table tbody tr:hover,
+   table tbody tr:hover td {
+     background-color: #EAEAEA;
+    color:black;
+   }
+   
+   .btn-delete {
+     cursor: pointer;
+     padding: 6px;
+     margin-left: 5px;
+     background-color: #EAEAEC;
+     border-radius: 50%;
+     font-size: 35px;
+   }
+   
+   .wrapper-title {
+     display: flex;
+     align-items: center;
+     margin-bottom: 20px;
+     justify-content: center;
+   }
+   
+   .fa-arrow-right{
+     margin-right: 20px;
+     width: 20px;
+     height: 38px;
+   }
+   .title-page {
+     font-size: 33px;
+     font-weight: 700;
+   color:black;
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   }
+   
+   .content-img{
+     width: 50px;
+     height: 50px;
+     border-radius: 50% !important;
+     margin-bottom: 10px;
+    
+   }
+   .content-img-file{
+    width: 100%;
+    
+
+   }
+   table{
+     margin-bottom: 50px;
+   }
+   .btn-add{
+     position: absolute;
+     display: flex;
+     gap: 10px;
+     align-items: center;
+     right: 100px;
+     border: none;
+     padding: 10px 15px;
+     border-radius: 15px;
+     background-color: #323335;
+     color: #fff;
+     font-weight: 600;
+   }
+   .btn-add:hover{
+     background-color: #646466;
+   }
+   .rule-status{
+    width: 90px;
+    height: 35px;
+    border: none;
+    background-color: rgb(0, 8, 255);
+    color: white;
+    border-radius: 5px;
+   }
+   .rule-status.block{
+    background-color: #ff1818;
+   }
+   .rule-status.admin{
+    background-color: rgb(0, 0, 0);
+   }
+
+   @media (max-width:1200px) {
+     .content-user  {
+       margin-left: 60px;
+     }
+     .table-content {
+       min-width: 700px;
+     }
+   
+     .table-content table {
+       overflow-x: auto;
+     }
+   }
+   

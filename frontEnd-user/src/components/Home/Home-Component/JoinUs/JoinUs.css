@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Gothic&display=swap");
+
+.text-in-photo {
+  font-family: "League Gothic", sans-serif;
+  font-size: 7rem;
+  top: 0;
+  left: 20px;
+  color: white;
+  position: absolute;
+  top: 50px;
+}
+
+.text-in-photo-desc {
+  font-size: larger;
+  top: 36px;
+  left: 20px;
+  color: white;
+  position: absolute;
+}
+
+.button-in-photo {
+  background-color: white;
+  bottom: 50px;
+  left: 20px;
+  padding: 10px 20px;
+  text-align: center;
+  color: black;
+  opacity: 0.8;
+  border-radius: 20px;
+  position: absolute;
+  border: none;
+}
+
+.button-in-photo:hover {
+  background-color: gray;
+}

@@ -1,0 +1,17 @@
+.swiper-notification {
+  background-color: rgb(231, 231, 231);
+  height: 6vh;
+  border-bottom: #ffffff 1px solid;
+  text-align: center;
+  line-height: 6vh;
+  font-size: small;
+}
+
+.swiper {
+  z-index: 1;
+}
+
+.app-link {
+  text-decoration: underline;
+  cursor: pointer;
+}

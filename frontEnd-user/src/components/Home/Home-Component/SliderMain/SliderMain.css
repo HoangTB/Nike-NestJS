@@ -1,0 +1,12 @@
+.detail-product {
+  font-size: 27px;
+  position: absolute;
+  cursor: pointer;
+  color: grey;
+  top: 20px !important;
+  right: 20px !important;
+}
+
+.fa-circle-info:hover {
+  color: black;
+}

@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+
+.modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 50;
+    scroll-behavior: smooth;
+    transition: all 1s ease;
+    align-items: center;
+
+
+
+}
+
+.modal-null {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 800px;
+    height: 550px;
+    background-color: white;
+    color: black;
+    margin: 0 auto;
+    z-index: 10;
+    border-radius: 5px;
+    justify-content: space-around;
+    align-items: center;
+    padding: 14px 0;
+}
+
+.modal-null p {
+    font-size: 20px;
+
+    letter-spacing: 1px;
+
+}
+
+.modal-null-button {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+}
+
+.modal-null-button button {
+    background-color: rgb(216, 215, 215);
+    color: white;
+    width: 120px;
+    border: none;
+    padding: 5px 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: 0.2s;
+}
+
+.modal-null-button button:hover {
+    background-image: none;
+    background-color: rgb(0, 0, 0);
+}
+
+.form-big {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+}
+
+.form-update-left {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-update-right {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-update-left h3 {
+    text-transform: uppercase;
+}
+
+.form-update-right h3 {
+    text-transform: uppercase;
+}
+
+.form-create {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.form-create-form {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+
+}
+
+.wrapper-input-edit {
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.error1 {
+    position: absolute;
+    bottom: -5px;
+    font-size: 12px !important;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    color: red;
+}

@@ -1,0 +1,9 @@
+
+
+.favorite-items{
+  text-align: center;
+  font-size: 25px;
+}
+.delete-circle{
+  cursor: pointer !important;
+}

@@ -1,0 +1,164 @@
+/* down */
+
+.navibar-down {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 40px 0px 40px;
+}
+
+.logo-left img {
+  width: 60px;
+}
+
+.navi-center ul {
+  list-style-type: none;
+  gap: 60px;
+  z-index: 100;
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+}
+
+.navi-center ul a {
+  font-size: 15px !important;
+}
+.nav-link li {
+  color: black;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.right-search {
+  position: relative;
+  opacity: 0.5;
+}
+
+.right-search:hover {
+  opacity: 1;
+}
+
+.right-search input {
+  width: 150px;
+  height: 35px;
+  border-radius: 100px;
+  border: none;
+  background-color: rgb(231, 231, 231);
+  padding: 10px;
+  outline: none;
+}
+
+.right-search i {
+  position: absolute;
+  left: 120px;
+  top: 10px;
+}
+
+.right-search .fa-magnifying-glass {
+  font-size: 16px;
+}
+
+.menu-right {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.menu-right a {
+  font-size: 22px;
+  color: black;
+}
+
+.position-absolute {
+  top: 0;
+  font-size: 10px;
+  text-align: center;
+  padding-top: 3px;
+  color: rgb(255, 255, 255);
+  background-color: red;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.fa-list {
+  display: none;
+}
+
+.handbag {
+  font-size: 25px;
+  position: relative;
+}
+.handbag-number {
+  position: absolute;
+  background-color: black;
+}
+.dropdown-menu {
+  border: none !important;
+  width: 99vw !important;
+  left: 0;
+  padding: 20px 40px !important;
+}
+
+.menu-list {
+  display: flex;
+  gap: 90px;
+  line-height: 50px;
+}
+.nav-link {
+  color: black !important;
+}
+.nav-link li {
+  font-weight: lighter !important;
+  font-size: 15px;
+  color: rgb(141, 141, 141) !important;
+}
+.nav-link li:first-child {
+  font-weight: bold !important;
+}
+
+.nav-link li:hover {
+  color: rgb(0, 0, 0) !important;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(114, 113, 113);
+}
+a:hover {
+  color: black;
+}
+
+@media (max-width: 1075px) {
+  .navibar-top,
+  .right-search {
+    display: none;
+  }
+  .header {
+    display: block;
+  }
+  .fa-list {
+    display: block;
+    padding-left: 50xp;
+  }
+
+  .nav-underline {
+    position: absolute;
+    flex-direction: column;
+    background-color: white;
+    top: 95px;
+    right: 0;
+  }
+
+  .navi-center ul {
+    width: 200px;
+    padding: 20px;
+    gap: 10px;
+  }
+
+  .menu-right {
+    width: 80px;
+    justify-content: space-between;
+  }
+}

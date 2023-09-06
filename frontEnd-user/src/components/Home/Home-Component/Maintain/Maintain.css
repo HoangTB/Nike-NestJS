@@ -1,0 +1,11 @@
+.form-titleImg {
+  position: absolute;
+  bottom: 40px;
+  right: 20px;
+  color: white;
+  font-size: 18px;
+}
+
+.button-apps button {
+  border-radius: 20px !important;
+}

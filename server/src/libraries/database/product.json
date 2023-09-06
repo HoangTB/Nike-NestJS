@@ -1,0 +1,227 @@
+[
+    {
+        "id": 1,
+        "name": "Air Jordan 13 Retro Low",
+        "type": "Woman's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/18e48a78-6740-4f18-a103-04c299e37be5/air-jordan-2-retro-low-mens-shoes-LVlsNr.png",
+        "price": 179,
+        "new": 1,
+        "quantity_inventory": 30
+    },
+    {
+        "id": 2,
+        "name": "LeBron 19",
+        "type": "Men's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/94a90109-1f7a-4170-bc3c-8ae4c93903ba/lebron-19-basketball-shoes-VkqHgW.png",
+        "price": 669,
+        "new": 1,
+        "quantity_inventory": 30
+    },
+    {
+        "id": 3,
+        "name": "LeBron 20",
+        "type": "Men's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/fb2864f1-cfa2-4cf0-9fd1-478cb2a9a997/lebron-nxxt-gen-basketball-shoes-55g4w1.png",
+        "price": 449,
+        "new": 2,
+        "quantity_inventory": 30
+    },
+    {
+        "id": 4,
+        "name": "Nike ACG Air Mada",
+        "type": "Men's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/6125eff9-2fed-4a0b-827c-4af6f7071560/acg-air-mada-mens-shoes-P87mVj.png",
+        "price": 629,
+        "new": 2,
+        "quantity_inventory": 30
+    },
+    {
+        "id": 5,
+        "name": "Nike Air Cross Trainer 3 Low",
+        "type": "Kid's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/b295834f-ba8e-46c1-80f4-4329919d3b6a/air-cross-trainer-3-low-mens-shoes-l9MqNc.png",
+        "price": 469,
+        "new": 1,
+        "quantity_inventory": 30
+    },
+    {
+        "id": 6,
+        "name": "Nike Air Force 1 '07 EasyOn",
+        "type": "Men's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/13721f24-2774-443e-a27d-998d2c6be068/air-force-1-07-easyon-shoes-vpmlK3.png",
+        "price": 199,
+        "new": 2,
+        "quantity_inventory": 30
+    },
+    {
+        "id": 7,
+        "name": "Nike Air Huarache",
+        "type": "Men's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/e3fd0975-2868-4e72-8fe0-b1b03baca9be/air-huarache-premium-mens-shoes-JppwBb.png",
+        "price": 469,
+        "new": 2,
+        "quantity_inventory": 30
+    },
+    {
+        "id": 8,
+        "name": "Nike Air Max 97 SE",
+        "type": "Woman's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/732897d6-14d7-407c-bf8e-bdef0d74b6c7/air-max-97-se-mens-shoes-LJmK45.png",
+        "price": 279,
+        "new": 2,
+        "quantity_inventory": 30
+    },
+    {
+        "id": 9,
+        "name": "Nike Air Max Dawn",
+        "type": "Woman's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/9492ec71-0736-4265-96d6-ea94dbb126a4/air-max-dawn-womens-shoes-224mWf.png",
+        "price": 199,
+        "new": 2,
+        "quantity_inventory": 30
+    },
+    {
+        "id": 10,
+        "name": "Nike Air Max Plus",
+        "type": "Men's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/5bf0f0d0-abc8-4d39-932d-9c4fe604fd0b/air-max-plus-mens-shoes-x9G2xF.png",
+        "price": 199,
+        "new": 2,
+        "quantity_inventory": 30
+    },
+    {
+        "id": 11,
+        "name": "Nike Air Max Terrascape 90",
+        "type": "Men's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/121a6ee4-7678-4ed2-a7df-6323a4f1847e/air-max-terrascape-90-mens-shoes-61rLc8.png",
+        "price": 599,
+        "new": 2,
+        "quantity_inventory": 30
+    },
+    {
+        "id": 12,
+        "name": "Nike Air Zoom SuperRep 3",
+        "type": "Woman's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/b2fa4a86-621f-49f3-a6c5-4627d5d9f792/air-zoom-superrep-3-womens-hiit-class-shoes-4p1pwz.png",
+        "price": 229,
+        "new": 2,
+        "quantity_inventory": 30
+    },
+    {
+        "id": 13,
+        "name": "Kyrie Infinity",
+        "type": "Woman's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/41f5416d-8345-41c3-af0e-e4d1b87d20ce/kiger-8-womens-trail-running-shoes-0k4LXX.png",
+        "price": 199,
+        "new": 1,
+        "quantity_inventory": 30
+    },
+    {
+        "id": 14,
+        "name": "Nike Blazer Mid '77 Jumbo",
+        "type": "Men's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/5c3c362e-7c2b-4fa6-9ca5-0fc6457ba256/blazer-mid-77-jumbo-mens-shoes-s09S0Z.png",
+        "price": 195,
+        "new": 2,
+        "quantity_inventory": 30
+    },
+    {
+        "id": 15,
+        "name": "Nike Metcon 7",
+        "type": "Kid's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/b4c20787-50d9-4bd9-8968-01e9795dc8d2/metcon-7-training-shoes-0l6Psg.png",
+        "price": 205,
+        "new": 2,
+        "quantity_inventory": 30
+    },
+    {
+        "id": 16,
+        "name": "Nike Pegasus Trail 3",
+        "type": "Woman's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/f1422d49-453d-4bc3-9cab-357516d08d81/pegasus-trail-3-mens-trail-running-shoes-QPcRqp.png",
+        "price": 890,
+        "new": 2,
+        "quantity_inventory": 30
+    },
+    {
+        "id": 17,
+        "name": "Nike Team Hustle D 11",
+        "type": "Kid's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/cd15bd94-a6d3-44d5-9e11-1879892ab6c7/team-hustle-d-11-older-basketball-shoes-TBQxXL.png",
+        "price": 295,
+        "new": 2,
+        "quantity_inventory": 30
+    },
+    {
+        "id": 18,
+        "name": "Nike React Infinity Run Flyknit 3",
+        "type": "Woman's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/45544e10-1e4c-437d-8340-dc4e9a9fbead/react-infinity-run-flyknit-3-mens-road-running-shoes-1bRq75.png",
+        "price": 749,
+        "new": 2,
+        "quantity_inventory": 30
+    },
+    {
+        "id": 19,
+        "name": "Nike SB Chron 2 Canvas",
+        "type": "Men's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/c691f7e2-8aef-48e2-91c0-34704c1c138e/sb-chron-2-canvas-skate-shoes-VmcNLG.png",
+        "price": 749,
+        "new": 1,
+        "quantity_inventory": 30
+    },
+    {
+        "id": 20,
+        "name": "Nike SB Zoom Pogo Plus",
+        "type": "Woman's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/dc31862e-5af6-4611-a497-5bd3b29e7191/sb-zoom-pogo-plus-skate-shoes-GxMsNp.png",
+        "price": 197,
+        "new": 1,
+        "quantity_inventory": 30
+    },
+    {
+        "id": 21,
+        "name": "Nike WinFlo 8",
+        "type": "Woman's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/e20fbae8-d997-479b-b510-830c16a357ca/wio-8-premium-womens-road-running-shoes-01GZh6.png",
+        "price": 759,
+        "new": 1,
+        "quantity_inventory": 30
+    },
+    {
+        "id": 22,
+        "name": "Nike x sacai Blazer Low",
+        "type": "Kid's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/6650f6d0-8130-4114-9e5f-a3d605278e63/blazer-low-77-vintage-mens-shoes-jsksCM.png",
+        "price": 699,
+        "new": 1,
+        "quantity_inventory": 30
+    },
+    {
+        "id": 23,
+        "name": "Nike Zoom Fly 4",
+        "type": "Woman's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/4b2715fe-3d81-4177-9f60-74d79112cca7/zoom-fly-5-mens-road-running-shoes-jGsdSl.png",
+        "price": 329,
+        "new": 1,
+        "quantity_inventory": 30
+    },
+    {
+        "id": 24,
+        "name": "Nike ZoomX Vaporfly Next",
+        "type": "Kid's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/a87b2ec6-d9ad-4fdb-a582-2be4e186b00f/vaporfly-next-3-womens-road-racing-shoes-KcmWJb.png",
+        "price": 929,
+        "new": 1,
+        "quantity_inventory": 30
+    },
+    {
+        "id": 25,
+        "name": "NikeCourt Zoom Vapor Cage 4 Rafa",
+        "type": "Kid's Shoes",
+        "image": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/fb974bc4-7f85-49ec-8898-95d11e13f628/nikecourt-zoom-vapor-cage-4-rafa-mens-hard-court-tennis-shoes-dMxMqL.png",
+        "price": 799,
+        "new": 1,
+        "quantity_inventory": 30
+    }
+]
