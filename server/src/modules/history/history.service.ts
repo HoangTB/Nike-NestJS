@@ -1,18 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Between, Repository } from 'typeorm';
+import { Between, LessThanOrEqual, Repository } from 'typeorm';
 import { History } from './database/history.entity';
 import { HistoryDTO, HistoryGetMonthDTO } from './dto/history.dto';
+import { EmailMailer } from '../../utils/mailer';
 @Injectable()
 export class HistoryService {
   constructor(
     @InjectRepository(History)
     private HistoryRepo: Repository<History>,
+    private EmailMailer: EmailMailer,
   ) {}
   async postHistory(data: HistoryDTO): Promise<{ message: string }> {
     try {
       const history = this.HistoryRepo.create(data);
       await this.HistoryRepo.save(history);
+
+      await this.EmailMailer.sendRegistrationEmail(history);
       return { message: 'Create Successfully' };
     } catch (err) {
       return { message: err.message };

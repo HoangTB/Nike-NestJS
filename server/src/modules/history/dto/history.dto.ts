@@ -1,3 +1,5 @@
+import { ProductDTO } from '../../products/dto/product.dto';
+
 export class HistoryDTO {
   id?: number;
   quantity?: number;
@@ -10,6 +12,7 @@ export class HistoryDTO {
   order_date?: Date;
   order_id?: number;
   product_id?: number;
+  Product?: ProductDTO;
 }
 
 export class HistoryGetMonthDTO {
