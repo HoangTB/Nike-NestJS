@@ -19,6 +19,10 @@ export interface IReview {
   };
 }
 export class ReviewAPI {
+  static getReviewId(id: number): Promise<Array<IReview>> {
+    const url = `/api/v1/review/${id}`;
+    return axiosClient.get(url);
+  }
   static getReviewIdProMegUser(id: number): Promise<Array<IReview>> {
     const url = `/api/v1/review/proID-user/${id}`;
     return axiosClient.get(url);

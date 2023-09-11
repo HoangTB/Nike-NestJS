@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { IUser, UserAPIServer } from "../../models/User";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./UserManager.css";
 const UserManager: React.FC = () => {
   const [users, setUsers] = useState<Array<IUser>>([]);
@@ -10,8 +12,9 @@ const UserManager: React.FC = () => {
 
   const handleBlockActive = async (id: number) => {
     const response: any = await UserAPIServer.getAllUserById(id);
-    if (response[0].role === 1) {
-      if (response[0].status === 1) {
+
+    if (response.role === 1) {
+      if (response.status === 1) {
         try {
           await UserAPIServer.updateStatus(id);
         } catch (error) {
@@ -24,6 +27,17 @@ const UserManager: React.FC = () => {
           console.error("Error updating user status:", error);
         }
       }
+    } else {
+      toast.info("Account is locked! Unlock to take action!", {
+        position: "top-right",
+        autoClose: 500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
 
     setLoading(!isLoading);
@@ -31,23 +45,26 @@ const UserManager: React.FC = () => {
 
   const handleAdmin = async (id: number) => {
     const response: any = await UserAPIServer.getAllUserById(id);
-    if (response[0].role === 1) {
-      try {
-        await UserAPIServer.updateActive(id);
-      } catch (error) {
-        console.error("Error updating user status:", error);
-      }
-    } else {
-      try {
-        await UserAPIServer.updateActive(id);
-      } catch (error) {
-        console.error("Error updating user status:", error);
+    if (response.status === 1) {
+      if (response.role === 1) {
+        try {
+          await UserAPIServer.updateActive(id);
+        } catch (error) {
+          console.error("Error updating user status:", error);
+        }
+      } else {
+        try {
+          await UserAPIServer.updateActive(id);
+        } catch (error) {
+          console.error("Error updating user status:", error);
+        }
       }
     }
     setLoading(!isLoading);
   };
   return (
     <div className="content-user">
+      <ToastContainer />
       <div className="table-content">
         <div className="wrapper-title">
           <i className="fa-solid fa-arrow-right"></i>
@@ -68,7 +85,10 @@ const UserManager: React.FC = () => {
             {users &&
               users.map((user) => {
                 return (
-                  <tr key={user.id}>
+                  <tr
+                    key={user.id}
+                    className={user.role === 2 ? "disabled-row" : ""}
+                  >
                     <td>{user.id}</td>
                     <td>
                       {user.role === 1 ? (

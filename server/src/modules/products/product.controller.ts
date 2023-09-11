@@ -2,7 +2,6 @@ import {
   Controller,
   Get,
   Post,
-  Delete,
   Patch,
   Query,
   Param,
@@ -27,14 +26,17 @@ export class ProductController {
     return this.ProductService.getProductLast();
   }
   @Get('/search')
-  searchProductType(@Query() query: { type: string }) {
+  searchProductType(@Query() query: any) {
     return this.ProductService.searchProductType(query);
   }
-  @Get('/search-price')
-  searchProductPrice(
-    @Query() query: { type: string; minPrice: number; maxPrice: number },
-  ) {
-    return this.ProductService.searchProductPrice(query);
+  @Get('/search-name')
+  searchProductName(@Query() query: any) {
+    return this.ProductService.searchProductName(query);
+  }
+
+  @Get('/search-type')
+  searchProductManager(@Query() query: any) {
+    return this.ProductService.searchProductManager(query);
   }
 
   @Get('/:id')
@@ -52,12 +54,14 @@ export class ProductController {
     FileFieldsInterceptor([{ name: 'image', maxCount: 1 }], multerUpload),
   )
   postProductNotJson(@UploadedFiles() files: any, @Body() data: ProductDTO) {
+    console.log(files);
+
     if (files.image) {
       data.image = files.image[0].path;
     }
     return this.ProductService.postProductNotJson(data);
   }
-  @Delete('/delete/:id')
+  @Patch('/delete/:id')
   deleteProductById(@Param('id') id: number) {
     return this.ProductService.deleteProductById(id);
   }

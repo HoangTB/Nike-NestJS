@@ -6,12 +6,15 @@ export const login = createAsyncThunk(
   async (adminData: ILoginAdmin) => {
     try {
       const response: ILogin = await Login.LoginAdmin(adminData);
-
-      localStorage.setItem("admin", JSON.stringify(response.data.user));
-      localStorage.setItem("accessToken", response.data.accessToken);
-      return response;
+      if (response.data.user.role === 2) {
+        localStorage.setItem("admin", JSON.stringify(response.data.user));
+        localStorage.setItem("accessToken", response.data.accessToken);
+        return response;
+      } else {
+        return { message: "This is not an administrator account" };
+      }
     } catch (err) {
-      throw err;
+      return err;
     }
   }
 );

@@ -9,6 +9,7 @@ import OrderManager from "../components/OrderManager/OrderManager";
 import RevenueManager from "../components/RevenueManager/RevenueManager";
 import NotFound from "../pages/NotFound/NotFound";
 import AdminOutlet from "../middlewares/requireAdmin";
+import Dashboard from "../components/Dashboard/Dashboard";
 
 const Router: React.FC = () => {
   return (
@@ -34,6 +35,10 @@ const Router: React.FC = () => {
           <Route
             path="revenue-manager"
             element={<DefaultLayout children={<RevenueManager />} />}
+          />
+          <Route
+            path="dashboard-manager"
+            element={<DefaultLayout children={<Dashboard />} />}
           />
           <Route path="login-manager" element={<DefaultLayoutLogin />} />
         </Route>

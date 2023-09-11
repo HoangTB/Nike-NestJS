@@ -33,6 +33,7 @@ export interface INavibarProps {
 
 export interface IProfile {
   id?: number | undefined;
+  avatar?: File | null;
   email?: string;
   password?: string;
   firstName?: string | undefined;

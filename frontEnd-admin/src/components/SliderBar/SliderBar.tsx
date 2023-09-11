@@ -4,6 +4,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BiLogOut } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { HistoryAPIServer, IHistory } from "../../models/History";
+import queryString from "query-string";
+
 const SliderBar: React.FC = () => {
   const router = useLocation();
   const navitage = useNavigate();
@@ -13,14 +15,13 @@ const SliderBar: React.FC = () => {
   const [history, setHistory] = useState<Array<IHistory>>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const update = useSelector((status: any) => status.update);
+  const queryParams = queryString.parse(location.search);
   useEffect(() => {
-    HistoryAPIServer.getAllHistoryIdOrder().then((h: any) => {
+    HistoryAPIServer.searchHistoryType(queryParams).then((h: any) => {
       setHistory(h);
     });
     setIsLoading(true);
-  }, [isLoading, location.pathname, update]);
-
-  const quantityHistory = history?.filter((h: IHistory) => h.status !== 4);
+  }, [isLoading, location.search, update]);
 
   const handleLogout = () => {
     localStorage.removeItem("admin");
@@ -69,7 +70,7 @@ const SliderBar: React.FC = () => {
               className={router.pathname === "/order-manager" ? "active" : ""}
             >
               <span className="position-absolute quantity-history fa-bounce">
-                {quantityHistory ? quantityHistory.length : 0}
+                {history ? history.length : 0}
               </span>
 
               <span>Order Manager</span>
@@ -87,6 +88,23 @@ const SliderBar: React.FC = () => {
               className={router.pathname === "/revenue-manager" ? "active" : ""}
             >
               <span>Revenue</span>
+            </Link>
+          </li>
+
+          <li
+            className={
+              router.pathname === "/dashboard-manager"
+                ? "active position-relative"
+                : "position-relative"
+            }
+          >
+            <Link
+              to={"/dashboard-manager"}
+              className={
+                router.pathname === "/dashboard-manager" ? "active" : ""
+              }
+            >
+              <span>DashBoard</span>
             </Link>
           </li>
         </ul>

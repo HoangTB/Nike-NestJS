@@ -18,12 +18,12 @@ export interface IHistory {
   };
 }
 export class HistoryAPI {
-  static createHistory(params: IHistory): Promise<any> {
+  static createHistory(params: IHistory): Promise<IHistory> {
     const url = "/api/v1/history";
     return axiosClient.post(url, params);
   }
 
-  static getHistoryIdOrder(id: number): Promise<Array<History>> {
+  static getHistoryIdOrder(id: number): Promise<Array<IHistory>> {
     const url = `/api/v1/history/get-orderID/${id}`;
     return axiosClient.get(url);
   }

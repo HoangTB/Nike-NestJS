@@ -10,9 +10,20 @@ export class ReviewService {
     @InjectRepository(Reviews)
     private ReviewRepo: Repository<Reviews>,
   ) {}
-  async getReviewIdUser(): Promise<ReviewDTO[] | { message: string }> {
+  async getReview(): Promise<ReviewDTO[] | { message: string }> {
     try {
       const review = await this.ReviewRepo.find();
+      return review;
+    } catch (err) {
+      return { message: err.message };
+    }
+  }
+
+  async getReviewId(id: number): Promise<ReviewDTO[] | { message: string }> {
+    try {
+      const review = await this.ReviewRepo.find({
+        where: { product_id: id },
+      });
       return review;
     } catch (err) {
       return { message: err.message };

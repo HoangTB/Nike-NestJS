@@ -68,6 +68,7 @@ const LoginForm: React.FC<LoginRegisterFormProps> = ({ setIsShow }) => {
 
     if (isValid) {
       const data = await dispatch(login({ email, password }) as any).unwrap();
+
       if (data.status === 200) {
         navigate("/");
       } else if (data.message === "Account has been locked") {

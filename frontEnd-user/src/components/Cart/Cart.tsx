@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import "./Cart.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { IProductMerger, Products } from "../../models/Product";
-import { IUpdateOrderDetail, OrderDetail } from "../../models/OrderDetail";
+
+import {
+  IOrderDetail,
+  IUpdateOrderDetail,
+  OrderDetail,
+} from "../../models/OrderDetail";
 import { updateState } from "../../store/slice/UpdateProSlice";
-import { UserAPI } from "../../models/LoginRegister";
+import { IUser, UserAPI } from "../../models/LoginRegister";
+import { IOrder, IProductMerger, Order } from "../../models/Order";
 const Cart: React.FC = () => {
   let quantityTotal = 0;
   let priceTotal = 0;
@@ -20,8 +25,11 @@ const Cart: React.FC = () => {
   const user = userValue ? JSON.parse(userValue) : undefined;
   useEffect(() => {
     if (user && user.id) {
-      Products.getProductMerger(user.id).then((product: any) => {
-        setDataCart(product[0]?.OrderDetails);
+      Order.getOrderById(user.id).then((data: IOrder) => {
+        Order.getProductMerger(data.id!).then((product: IProductMerger) => {
+          const value: any = product.OrderDetail;
+          setDataCart(value);
+        });
       });
     }
   }, [update, location.pathname]);
@@ -41,11 +49,10 @@ const Cart: React.FC = () => {
     await OrderDetail.updateOrderDetail(id, quantityValue);
     dispatch(updateState());
   };
-  // console.log(dataCart);
 
   const handleToPayment = () => {
-    UserAPI.getUserIdOrder(user.id).then((res: any) => {
-      return OrderDetail.getOrderDetailById(res.Order.id).then((data) => {
+    UserAPI.getUserIdOrder(user.id).then((res: IUser) => {
+      return OrderDetail.getOrderDetailById(res.Order!.id!).then((data) => {
         if (data.length === 0) {
           toast.error("Please order products !", {
             position: "top-right",
@@ -63,6 +70,7 @@ const Cart: React.FC = () => {
       });
     });
   };
+
   return (
     <div className="shopping-cart">
       <ToastContainer />
@@ -73,7 +81,7 @@ const Cart: React.FC = () => {
               <div className="items">
                 <div className="row gap-3">
                   {dataCart &&
-                    dataCart.map((data: IProductMerger, index) => {
+                    dataCart.map((data: IOrderDetail, index) => {
                       quantityTotal += data.quantity!;
 
                       priceTotal += data.Product!.price! * data.quantity!;
@@ -190,4 +198,4 @@ const Cart: React.FC = () => {
   );
 };
 
-export default Cart;
+export default memo(Cart);

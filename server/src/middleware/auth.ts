@@ -23,9 +23,6 @@ export class CheckAuth implements NestMiddleware {
 
     // Giải mã token và kiểm tra tính hợp lệ
     jwt.verify(token, process.env.secretKey, (err, user): void => {
-      console.log(1, err);
-      console.log(2, user);
-
       if (err) {
         res.status(403).json('Token is not valid');
       } else {

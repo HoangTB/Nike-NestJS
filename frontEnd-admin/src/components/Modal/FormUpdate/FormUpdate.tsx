@@ -5,6 +5,7 @@ import { updateState } from "../../../store/slice/UpdateProSlice";
 import axios from "axios";
 import Success from "../Success/Success";
 import { IErrorsCreate, IFormUpdate } from "../../../types/Type";
+import Loading from "../../Loading/Loading";
 
 const FormUpdate: React.FC<IFormUpdate> = ({
   handleEdit,
@@ -27,7 +28,7 @@ const FormUpdate: React.FC<IFormUpdate> = ({
   const [image4, setImage4] = useState<File | string>("");
   const [errors, setErrors] = useState<IErrorsCreate>({});
   const [isShowSuccess, setIsShowSuccess] = useState<boolean>(false);
-
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   useEffect(() => {
     if (dataEdit![0]) {
       setName(dataEdit![0].name);
@@ -94,7 +95,7 @@ const FormUpdate: React.FC<IFormUpdate> = ({
         quantity_inventory: quantityInventory,
         image: image,
       };
-
+      setIsLoading(true);
       try {
         const response: any = await axios.patch(
           `http://localhost:8080/api/v1/products/admin-update/${idUpdate}`,
@@ -105,8 +106,11 @@ const FormUpdate: React.FC<IFormUpdate> = ({
             },
           }
         );
+        setIsLoading(false);
         console.log(111, response.data);
       } catch (error) {
+        setIsLoading(false);
+
         console.error(error);
       }
       const formImage = new FormData();
@@ -114,7 +118,7 @@ const FormUpdate: React.FC<IFormUpdate> = ({
       formImage.append("images", image2);
       formImage.append("images", image3);
       formImage.append("images", image4);
-
+      setIsLoading(true);
       try {
         const response: any = await axios.patch(
           `http://localhost:8080/api/v1/images/admin-update/${idUpdate}`,
@@ -125,8 +129,11 @@ const FormUpdate: React.FC<IFormUpdate> = ({
             },
           }
         );
+        setIsLoading(true);
         console.log(333, response.data);
       } catch (error) {
+        setIsLoading(true);
+
         console.error(error);
       }
       setIsShowSuccess(true);
@@ -141,6 +148,7 @@ const FormUpdate: React.FC<IFormUpdate> = ({
   };
   return (
     <div className="modal">
+      {isLoading && <Loading />}
       {isShowSuccess && <Success closeSuccess={closeSuccess} />}
       <div className="modal-null">
         <form className="form-create" onSubmit={handleFormSubmit}>

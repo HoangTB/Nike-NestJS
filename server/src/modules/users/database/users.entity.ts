@@ -12,6 +12,11 @@ import { Reviews } from '../../review/database/review.entity';
 export class Users {
   @PrimaryGeneratedColumn()
   id: number;
+  @Column({
+    default:
+      'https://www.nike.com/static/dotcom-member/settings/_next/public/images/default_avatar.png',
+  })
+  avatar: string;
   @Column()
   email: string;
   @Column()

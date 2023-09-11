@@ -1,0 +1,61 @@
+.form-search {
+  width: 100%;
+  height: 480px;
+  background-color: white;
+  z-index: 1000;
+  position: absolute;
+  top: 95px;
+}
+
+.form-search-child {
+  padding: 40px;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  max-height: 470px;
+  overflow-y: auto;
+}
+
+.form-search-child::-webkit-scrollbar {
+  width: 8px;
+  height: 10px;
+  cursor: pointer;
+
+}
+
+.form-search-child::-webkit-scrollbar-track {
+  background: #fdfbfb;
+  margin: 50px;
+}
+
+.form-search-child::-webkit-scrollbar-thumb {
+  background: #e4e4e4;
+  border-radius: 10px;
+
+}
+
+.form-search-child::-webkit-scrollbar-thumb:hover {
+  background: #afadad;
+}
+
+.form-search-child-shoes {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+}
+
+.form-search-child-shoes img {
+  width: 200px;
+}
+
+.form-search-child-shoes p {
+  font-size: 15px;
+  margin: 0;
+
+}
+
+
+.form-search-child-shoes .grey {
+  color: rgb(172, 171, 171);
+}

@@ -10,6 +10,7 @@ const RequireLogin: React.FC = () => {
     try {
       let date = new Date();
       let decode: any = jwtDecode(accessToken!);
+
       if (decode && decode.exp > date.getTime() / 1000) {
         return setExp(false);
       } else {

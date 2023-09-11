@@ -29,10 +29,19 @@
 }
 
 .img-circle img {
-  height: 100px;
-  width: 100px;
+  height: 120px;
+  width: 120px;
   border-radius: 100%;
-  border: 5px solid #fff;
+  border: 1px solid #474747;
+
+}
+.img-circle{
+  position: relative;
+}
+.edit-image{
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
 }
 .form-profile {
   display: flex;
@@ -74,7 +83,7 @@
 
 .row-form{
   display: flex;
-  gap: 50px;
+  gap: 200px;
 }
 .row-1{
   width: 400px;
@@ -82,4 +91,9 @@
 
 .row-2{
   width: 500px;
+}
+.btn-update-user{
+  width: 180px;
+  height: 50px;
+  font-size: 18px;
 }

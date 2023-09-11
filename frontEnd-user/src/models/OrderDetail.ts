@@ -1,10 +1,12 @@
 import axiosClient from "../api/AxiosClient";
+import { IProducts } from "./Product";
 export interface IOrderDetail {
   id?: number;
   quantity?: number;
   size_product?: string;
   product_id?: number;
   order_id?: number;
+  Product?: IProducts;
 }
 
 export interface IUpdateOrderDetail {

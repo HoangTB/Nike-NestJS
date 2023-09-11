@@ -38,6 +38,8 @@
   gap: 40px;
 }
 
+/* Kiểu dáng của liên kết khi được nhấn vào */
+
 @media (max-width: 1895px) {
   .list-left {
     display: none;

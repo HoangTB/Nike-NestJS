@@ -5,7 +5,7 @@ import { Users } from './database/users.entity';
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
-import { LoginDTO, UpdateUserDTO } from './dto/user.dto';
+import { LoginDTO, RegisterDTO, UpdateUserDTO } from './dto/user.dto';
 require('dotenv').config();
 let refreshTokenArr: string[] = [];
 @Injectable()
@@ -43,7 +43,7 @@ export class UsersService {
     }
   }
 
-  async createUser(data: LoginDTO): Promise<{
+  async createUser(data: RegisterDTO): Promise<{
     message?: string;
   }> {
     const { email, password, firstName, lastName, birthday } = data;
@@ -54,6 +54,7 @@ export class UsersService {
     if (existingUser) {
       return { message: 'Email already exists' };
     }
+
     // Hash mật khẩu trước khi lưu vào database
     const saltRounds = 10;
     const salt = await bcrypt.genSalt(saltRounds);
@@ -72,11 +73,11 @@ export class UsersService {
       await this.UserRepo.save(user);
       return { message: 'Create User Successfully' };
     } catch (err) {
-      return err;
+      return { message: err.message };
     }
   }
 
-  async loginUser(data: LoginDTO, res: Response): Promise<void> {
+  async loginUser(data: LoginDTO, res: Response): Promise<any> {
     const { email, password } = data;
     const user = await this.UserRepo.findOne({ where: { email } });
     try {
@@ -87,7 +88,7 @@ export class UsersService {
             { password: user.password },
             process.env.secretKey,
             {
-              expiresIn: '1d',
+              expiresIn: '180s',
             },
           );
 
@@ -100,6 +101,7 @@ export class UsersService {
           );
           // Tạo refreshToken để dự trữ
           refreshTokenArr.push(refreshToken);
+
           const { password, ...data } = user;
           res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
@@ -118,19 +120,20 @@ export class UsersService {
         res.status(401).json({ message: 'Email or password does not exist !' });
       }
     } catch (err) {
-      res.status(500).json({ message: err.message });
+      res.status(500).json({ message: 'Internal Server Error' });
     }
   }
 
   async refreshToken(req: Request, res: Response): Promise<any> {
     try {
       const refreshToken = req.cookies.refreshToken;
-      console.log('REQ', req.cookies.refreshToken);
-      console.log('refreshTokenArr', refreshTokenArr);
 
-      if (!refreshToken) return res.status(401).json('Unauthenticated');
+      // console.log('refreshToken', refreshToken);
+      // console.log('refreshTokenArr-2', refreshTokenArr);
+
+      if (!refreshToken) return res.status(401).json('Unauthenticated-1');
       if (!refreshTokenArr.includes(refreshToken)) {
-        return res.status(401).json('Unauthenticated');
+        return res.status(401).json('Unauthenticated-2');
       }
       jwt.verify(
         refreshToken,
@@ -144,7 +147,7 @@ export class UsersService {
             (token: string) => token !== refreshToken,
           );
           const newAccessToken = jwt.sign(userOther, process.env.secretKey, {
-            expiresIn: '1d',
+            expiresIn: '180s',
           });
           const newRefreshToken = jwt.sign(
             userOther,
@@ -154,6 +157,7 @@ export class UsersService {
             },
           );
           refreshTokenArr.push(newRefreshToken);
+
           res.cookie('refreshToken', newRefreshToken, {
             httpOnly: true,
             secure: true,
@@ -174,26 +178,29 @@ export class UsersService {
     );
     res.status(200).json('Logout Successfully');
   }
+
   async updateUser(
     data: UpdateUserDTO,
     id: number,
     res: Response,
   ): Promise<void> {
-    const {
-      email,
-      firstName,
-      lastName,
-      birthday,
-      oldPass,
-      newPass,
-      confirmPass,
-    } = data;
-
     try {
+      const {
+        avatar,
+        email,
+        firstName,
+        lastName,
+        birthday,
+        oldPass,
+        newPass,
+        confirmPass,
+      } = data;
+
+      const user = await this.UserRepo.findOne({ where: { email } });
+
       if (oldPass && newPass && confirmPass) {
         if (newPass === confirmPass) {
           if (confirmPass.length >= 5) {
-            const user = await this.UserRepo.findOne({ where: { email } });
             if (user) {
               const myPass = await bcrypt.compare(oldPass, user.password);
               if (myPass) {
@@ -201,6 +208,7 @@ export class UsersService {
                 const salt = await bcrypt.genSalt(saltRounds);
                 const hashedPassword = await bcrypt.hash(newPass, salt);
                 const result = {
+                  avatar: avatar ? avatar : user.avatar,
                   firstName: firstName,
                   lastName: lastName,
                   birthday: birthday,
@@ -224,6 +232,7 @@ export class UsersService {
         }
       } else {
         const result = {
+          avatar: avatar ? avatar : user.avatar,
           firstName: firstName,
           lastName: lastName,
           birthday: birthday,
@@ -236,12 +245,12 @@ export class UsersService {
       res.status(404).json({ message: error });
     }
   }
+
   async updateStatusByAdmin(id: number, res: Response): Promise<void> {
     try {
       const currentUser = await this.UserRepo.findOneBy({
         id,
       });
-      console.log(currentUser);
 
       if (currentUser) {
         const newStatus = currentUser.status === 1 ? 2 : 1;
@@ -261,7 +270,6 @@ export class UsersService {
       const currentUser = await this.UserRepo.findOneBy({
         id,
       });
-      console.log(currentUser);
 
       if (currentUser) {
         const newRole = currentUser.role === 1 ? 2 : 1;
@@ -272,6 +280,20 @@ export class UsersService {
       }
     } catch (error) {
       res.status(500).json({ message: error });
+    }
+  }
+  async updateAvatar(
+    id: number,
+    data: UpdateUserDTO,
+  ): Promise<{ message: string }> {
+    try {
+      const FindUser = await this.UserRepo.findOneBy({ id });
+      if (FindUser) {
+        await this.UserRepo.update(id, data);
+        return { message: 'Update successfully' };
+      }
+    } catch (error) {
+      return { message: error.message };
     }
   }
 }

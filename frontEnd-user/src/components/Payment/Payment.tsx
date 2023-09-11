@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./Payment.css";
 import Thanks from "../Modal/Thanks/Thanks";
 import { IErrorsPayment } from "../../types/Types";
-import { Products } from "../../models/Product";
+import { IOrder, IProductMerger, Order } from "../../models/Order";
+import { useSelector } from "react-redux";
 
 const Payment: React.FC = () => {
   const [isShowForm, setIsShowForm] = useState<boolean>(false);
@@ -13,6 +14,7 @@ const Payment: React.FC = () => {
   const [errors, setErrors] = useState<IErrorsPayment>({});
 
   const [dataArr, setDataArr] = useState([]);
+  const update = useSelector((state: any) => state.update);
   const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -20,10 +22,15 @@ const Payment: React.FC = () => {
   const userValue = localStorage.getItem("user");
   const user = userValue ? JSON.parse(userValue) : undefined;
   useEffect(() => {
-    Products.getProductMerger(user.id).then((data: any) =>
-      setDataArr(data[0]?.OrderDetails)
-    );
-  }, []);
+    if (user && user.id) {
+      Order.getOrderById(user.id).then((data: IOrder) => {
+        Order.getProductMerger(data.id!).then((product: IProductMerger) => {
+          const value: any = product.OrderDetail;
+          setDataArr(value);
+        });
+      });
+    }
+  }, [update]);
 
   const handlePayment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

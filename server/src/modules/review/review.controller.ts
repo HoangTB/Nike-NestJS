@@ -6,8 +6,12 @@ import { ReviewDTO } from './dto/review.dto';
 export class ReviewController {
   constructor(private readonly ReviewService: ReviewService) {}
   @Get()
-  getReviewIdUser() {
-    return this.ReviewService.getReviewIdUser();
+  getReview() {
+    return this.ReviewService.getReview();
+  }
+  @Get('/:id')
+  getReviewId(@Param('id') id: number) {
+    return this.ReviewService.getReviewId(id);
   }
   @Get('/proID-user/:id')
   getReviewIdProMegUser(@Param('id') id: number) {

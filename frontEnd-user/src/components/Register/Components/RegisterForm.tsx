@@ -87,6 +87,7 @@ const RegisterForm: React.FC<LoginRegisterFormProps> = ({ setIsShow }) => {
             progress: undefined,
             theme: "light",
           });
+
           setTimeout(() => {
             setIsShow(true);
           }, 2000);

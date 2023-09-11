@@ -16,28 +16,42 @@ import { IProfile } from "../../types/Types";
 import { updateState } from "../../store/slice/UpdateProSlice";
 import { FavoriteAPI, IFavorite } from "../../models/Favotites";
 import Review from "../Review/Review";
+import { Rating } from "react-simple-star-rating";
+import { IReview, ReviewAPI } from "../../models/Review";
 const Detail: React.FC = () => {
   const location = useLocation();
   const [user, setUser] = useState<IProfile>();
   const params = useParams();
   const [products, setProducts] = useState<IProducts>();
   const [selectSizes, setSelectedSizes] = useState<string[]>([]);
+  const [review, setReview] = useState<IReview[]>();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const today = new Date();
   const dataToday = format(today, "yyyy-MM-dd HH:mm:ss");
+  const date = new Date(dataToday);
   const update = useSelector((state: any) => state.update);
   const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     const userValue = localStorage.getItem("user");
     setUser(userValue ? JSON.parse(userValue) : undefined);
-  }, [location.pathname, update]);
-
-  useEffect(() => {
-    Products.getProductById(params.id as any).then((data: any) =>
+    Products.getProductById(params.id as any).then((data: IProducts) =>
       setProducts(data)
     );
+    ReviewAPI.getReviewId(params.id as any).then((data) => {
+      setReview(data);
+    });
   }, [location.pathname, update]);
+
+  const totalStars =
+    review && review.reduce((a, review: any) => a + review.star, 0);
+  let averageStars;
+  if (totalStars) {
+    averageStars = totalStars / review!.length;
+  }
+  console.log(averageStars);
+
   const handleSizeClick = (e: any) => {
     setSelectedSizes([]);
     const size = e.target.innerHTML;
@@ -71,14 +85,13 @@ const Detail: React.FC = () => {
       const userValue = localStorage.getItem("user");
       const user = userValue ? JSON.parse(userValue) : undefined;
       const orderValue: IOrder = {
-        order_date: dataToday,
+        order_date: date,
         user_id: user.id,
       };
 
       Order.postOrder(orderValue);
 
       const orderResponse: any = await Order.getOrderById(user.id);
-      console.log(orderResponse);
 
       if (!selectSizes[0]) {
         setIsLoading(false);
@@ -95,7 +108,7 @@ const Detail: React.FC = () => {
       } else {
         setIsLoading(false);
         const data: any = await OrderDetail.getOrderDetailById(
-          Number(orderResponse[0].id)
+          Number(orderResponse.id)
         )
           .then()
           .catch();
@@ -132,7 +145,7 @@ const Detail: React.FC = () => {
           setIsLoading(false);
           const orderDetailValue: IOrderDetail = {
             product_id: Number(params.id),
-            order_id: orderResponse[0].id,
+            order_id: orderResponse.id,
             size_product: selectSizes[0],
           };
           OrderDetail.postOrderDetail(orderDetailValue).then(() => {
@@ -155,7 +168,7 @@ const Detail: React.FC = () => {
   };
 
   const handleAddFavorite = async () => {
-    const favoriteID = await FavoriteAPI.getFavoriteID(Number(user?.id));
+    await FavoriteAPI.getFavoriteID(Number(user?.id));
 
     const favoriteValue: IFavorite = {
       user_id: Number(user?.id),
@@ -193,14 +206,14 @@ const Detail: React.FC = () => {
       <ToastContainer />
       {isLoading && <Loading />}
       <div className="container">
-        {products && (
+        {products?.Image !== undefined && (
           <div className="row list-image gap-6">
             <div className="col-8">
               <div className="row row-cols-1 row-cols-md-2 g-1 listimage-detail">
                 <div className="col">
                   <div className="card">
                     <img
-                      src={products.Images![0].image_1}
+                      src={products!.Image.image_1}
                       className="card-img-top image-zoom"
                       alt="..."
                     />
@@ -209,7 +222,7 @@ const Detail: React.FC = () => {
                 <div className="col">
                   <div className="card">
                     <img
-                      src={products.Images![0].image_2}
+                      src={products.Image.image_2}
                       className="card-img-top image-zoom"
                       alt="..."
                     />
@@ -218,7 +231,7 @@ const Detail: React.FC = () => {
                 <div className="col">
                   <div className="card">
                     <img
-                      src={products.Images![0].image_3}
+                      src={products.Image.image_3}
                       className="card-img-top image-zoom"
                       alt="..."
                     />
@@ -227,7 +240,7 @@ const Detail: React.FC = () => {
                 <div className="col">
                   <div className="card">
                     <img
-                      src={products.Images![0].image_4}
+                      src={products.Image.image_4}
                       className="card-img-top image-zoom"
                       alt="..."
                     />
@@ -239,7 +252,12 @@ const Detail: React.FC = () => {
               <div className="content-detail">
                 <h3 className="text-danger">{products?.name}</h3>
                 <h5 className="fst-italic pb-2">{products?.type}</h5>
-                <h5>{products?.price} $</h5>
+                <h5 className="mb-2">{products?.price} $</h5>
+                <Rating
+                  size={30}
+                  initialValue={averageStars ? averageStars : 0}
+                  readonly={true}
+                />
               </div>
               <table className="table-size">
                 <thead>

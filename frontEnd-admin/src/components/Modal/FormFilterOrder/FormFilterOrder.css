@@ -1,0 +1,21 @@
+.form-control-order{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.form-control-order1,.form-control-order2{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap:10px
+}
+.form-control-order1 p, .form-control-order2 p{
+  margin: 0;
+}
+
+.form-control-order-child,.form-control-order-child2{
+  width: 150px;
+  height: 30px;
+  font-size: 13px;
+  padding: 5px;
+}

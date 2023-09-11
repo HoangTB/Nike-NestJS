@@ -53,24 +53,23 @@ const Login: React.FC = () => {
 
     if (isValid) {
       const data = await dispatch(login({ email, password }) as any).unwrap();
+      console.log(1, data);
 
       if (data.status === 200) {
         setIsLoading(false);
-        if (data.data.user.role === 2) {
-          setIsLoading(false);
-          navigate("/home");
-        } else {
-          toast.info("This is not an administrator account", {
-            position: "top-right",
-            autoClose: 500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        }
+        navigate("/home");
+      } else if (data.message === "This is not an administrator account") {
+        setIsLoading(false);
+        toast.info("This is not an administrator account", {
+          position: "top-right",
+          autoClose: 500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       } else {
         setIsLoading(false);
         toast.error(data.response.data.message, {
@@ -86,6 +85,7 @@ const Login: React.FC = () => {
       }
     }
   };
+
   return (
     <div className="container forms">
       {isLoading && <Loading />}

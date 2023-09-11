@@ -1,37 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import "../ManProducts.css";
-import { IProducts, Products } from "../../../models/Product";
-import { useSelector } from "react-redux";
-const Card: React.FC = () => {
-  const [cardData, setCardData] = useState([]);
-  const sidebarValue = useSelector((state: any) => state.sidebar);
+import { IProducts } from "../../../models/Product";
 
-  const params = useParams();
-  const type = params.type!.split("&");
-  console.log(type);
-  useEffect(() => {
-    Products.searchProduct({ type: type }).then((product: any) => {
-      setCardData(product);
-    });
-  }, [location.pathname]);
-
-  let filteredData = cardData; // Khởi tạo dữ liệu lọc bằng dữ liệu gốc
-
-  if (sidebarValue) {
-    filteredData = cardData.filter(
-      (o: any) =>
-        (sidebarValue.min === undefined || o.price >= sidebarValue.min) &&
-        (sidebarValue.max === undefined || o.price <= sidebarValue.max)
-    );
-  }
-
-  console.log(filteredData);
-
+const Card: React.FC<any> = ({ productFilter }) => {
   return (
     <>
-      {filteredData &&
-        filteredData.map((e: IProducts) => {
+      {productFilter &&
+        productFilter.map((e: IProducts) => {
           return (
             <div className="cursor-pointer position-relative" key={e.id}>
               <Link

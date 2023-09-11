@@ -27,7 +27,9 @@ export class Products {
   new: number;
   @Column()
   quantity_inventory: number;
-  @OneToOne(() => Images, (image) => image.Product, { cascade: true })
+  @Column({ default: 0 })
+  status: number;
+  @OneToOne(() => Images, (image) => image.Product, { onDelete: 'CASCADE' })
   Image: Images;
   @OneToMany(() => OrderDetails, (orderDetail) => orderDetail.Product)
   OrderDetail: OrderDetails[];

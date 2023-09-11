@@ -46,7 +46,7 @@ const SliderMain: React.FC = () => {
         console.log(err);
       });
   }, []);
-
+  const productFilter = cardData.filter((item) => item.status === 0);
   return (
     <div className="mb-5">
       <div className="d-flex justify-content-between align-items-end mr-10 mb-3">
@@ -76,8 +76,8 @@ const SliderMain: React.FC = () => {
       </div>
 
       <Slider ref={sliderRef} {...settings}>
-        {cardData &&
-          cardData?.map((product) => {
+        {productFilter &&
+          productFilter?.map((product) => {
             if (product.new === 1) {
               return (
                 <div

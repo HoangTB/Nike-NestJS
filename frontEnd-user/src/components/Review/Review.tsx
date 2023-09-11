@@ -19,12 +19,12 @@ const Review: React.FC = () => {
   useEffect(() => {
     ReviewAPI.getReviewIdProMegUser(Number(params.id))
       .then((res) => {
-        console.log(res);
         setGetReview(res);
       })
       .catch((err) => console.log(err));
   }, [update]);
   // Catch Rating value
+
   const handleRating = (rate: number) => {
     setRating(rate);
   };
@@ -35,6 +35,7 @@ const Review: React.FC = () => {
     console.log(value, index);
   // console.log("raiting", rating);
   // console.log("value", valueReview);
+
   const handleSubmitComment = async () => {
     if (userLocal) {
       if (rating && valueReview) {
@@ -111,7 +112,6 @@ const Review: React.FC = () => {
         {getReview &&
           getReview!.map((e: any, index) => {
             const timestamp = new Date(e.createdAt);
-
             const datePart = timestamp.toISOString().slice(0, 10);
             const timePart = timestamp.toISOString().slice(11, 19);
 

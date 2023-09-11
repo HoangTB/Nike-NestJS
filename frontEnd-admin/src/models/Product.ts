@@ -16,6 +16,7 @@ export interface IProducts {
   price: number;
   new: number;
   quantity_inventory: number;
+  status: number;
   Images?: IImage;
 }
 export class ProductsServer {
@@ -40,7 +41,11 @@ export class ProductsServer {
 
   static deleteProduct(id: number) {
     const url: string = `api/v1/products/delete/${id}`;
-    return axiosClient.delete(url);
+    return axiosClient.patch(url);
+  }
+  static searchProductType(params: any): Promise<Array<IProducts>> {
+    const url = "api/v1/products/search-type";
+    return axiosClient.get(url, { params });
   }
 
   static updateProduct(

@@ -47,7 +47,7 @@ export class OrderService {
     try {
       const orderFind = await this.OrderRepo.findOne({
         where: { id },
-        relations: ['OrderDetail'],
+        relations: ['OrderDetail', 'OrderDetail.Product'],
       });
       return orderFind;
     } catch (err) {

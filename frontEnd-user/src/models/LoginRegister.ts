@@ -1,5 +1,7 @@
 import axios from "axios";
 import axiosClient from "../api/AxiosClient";
+import { IOrder } from "./Order";
+import AxiosClientFormData from "../api/AxiosClientFormData";
 export interface ILoginUser {
   email: string;
   password: string;
@@ -31,6 +33,18 @@ export interface IRegister {
   role?: number;
   status?: number;
 }
+
+export interface IUser {
+  id?: number;
+  email?: string;
+  password?: string;
+  firstName?: string;
+  lastName?: string;
+  birthday?: Date;
+  role?: number;
+  status?: number;
+  Order?: IOrder;
+}
 export class UserAPI {
   static register(param: IRegister): Promise<any> {
     const url = "http://localhost:8080/api/v1/users/register";
@@ -43,16 +57,16 @@ export class UserAPI {
   }
 
   static getUserId(id: number) {
-    const url = `http://localhost:8080/api/v1/users/${id}/`;
-    return axios.get(url);
+    const url = `http://localhost:8080/api/v1/users/${id}`;
+    return axiosClient.get(url);
   }
   static getUserIdOrder(id: number) {
     const url = `api/v1/users/order/${id}/`;
     return axiosClient.get(url);
   }
   static updateUser(id: number, param: IRegister) {
-    const url = `http://localhost:8080/api/v1/users/update-user/${id}`;
-    return axios.patch(url, param);
+    const url = `api/v1/users/update-user/${id}`;
+    return AxiosClientFormData.patch(url, param);
   }
   static deleteCookie() {
     const url = `api/v1/users/logout`;

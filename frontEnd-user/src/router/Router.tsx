@@ -34,7 +34,7 @@ const Router: React.FC = () => {
           element={<DefaultLayout children={<Detail />} />}
         />
         <Route
-          path="/products/:type"
+          path="/products"
           element={<DefaultLayout children={<ManProducts />} />}
         />
         <Route element={<RequireUser />}>

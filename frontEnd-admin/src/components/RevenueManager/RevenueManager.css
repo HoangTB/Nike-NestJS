@@ -1,0 +1,11 @@
+.post-date{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.no-data{
+  font-size: 25px;
+  text-align: center;
+  width: 100%;
+}

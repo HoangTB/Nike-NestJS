@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./History.css";
 import { Link, useLocation } from "react-router-dom";
 import { HistoryAPI, IHistory } from "../../models/History";
-import { Order } from "../../models/Order";
+import { IOrder, Order } from "../../models/Order";
 const History: React.FC = () => {
   const [dataHistory, setDataHistory] = useState<Array<IHistory>>([]);
 
@@ -11,8 +11,8 @@ const History: React.FC = () => {
   useEffect(() => {
     const userValue = localStorage.getItem("user");
     const user = userValue ? JSON.parse(userValue) : undefined;
-    Order.getOrderById(user.id).then((order: any) =>
-      HistoryAPI.getHistoryIdOrder(order[0].id).then((data: any) => {
+    Order.getOrderById(user.id).then((order: IOrder) =>
+      HistoryAPI.getHistoryIdOrder(order!.id!).then((data: IHistory[]) => {
         setDataHistory(data);
       })
     );
@@ -45,13 +45,13 @@ const History: React.FC = () => {
                 </thead>
                 <tbody>
                   {reversedDataHistory &&
-                    reversedDataHistory?.map((e: any, index) => {
+                    reversedDataHistory?.map((e: IHistory, index) => {
                       return (
                         <tr key={index}>
                           <th scope="row" className="border-0">
                             <div className="p-2">
                               <img
-                                src={e.Product.image}
+                                src={e.Product!.image}
                                 alt=""
                                 width={300}
                                 className="img-fluid rounded shadow-sm"
@@ -63,11 +63,11 @@ const History: React.FC = () => {
                                     to={`/detail/${e.product_id}`}
                                     className="text-dark d-inline-block align-middle"
                                   >
-                                    {e.Product.name}
+                                    {e.Product!.name}
                                   </Link>
                                 </h5>
                                 <span className="text-muted font-weight-normal font-italic d-block pt-2">
-                                  Type: {e.Product.type}
+                                  Type: {e.Product!.type}
                                 </span>
                                 <span className="text-muted font-weight-normal font-italic d-block pt-2">
                                   Size: {e.size_product}
@@ -78,7 +78,9 @@ const History: React.FC = () => {
                           <td className="border-0 align-middle">
                             <strong>
                               ${" "}
-                              {(e.Product.price * e.quantity).toLocaleString()}
+                              {(
+                                e.Product!.price * e.quantity!
+                              ).toLocaleString()}
                             </strong>
                           </td>
                           <td className="border-0 align-middle">

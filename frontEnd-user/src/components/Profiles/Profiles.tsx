@@ -7,11 +7,14 @@ import { IProfile } from "../../types/Types";
 import { UserAPI } from "../../models/LoginRegister";
 import { useDispatch, useSelector } from "react-redux";
 import { updateState } from "../../store/slice/UpdateProSlice";
+import Login from "../Modal/Login/Login";
+import Loading from "../Loading/Loading";
 
 const Profiles: React.FC = () => {
   const [userData, setUserData] = useState<IProfile>();
   const location = useLocation();
   const dispatch = useDispatch();
+  const [avatar, setAvatar] = useState<File | null>(null);
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [birthday, setBirthday] = useState<string>("");
@@ -22,22 +25,16 @@ const Profiles: React.FC = () => {
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const [isShowLogin, setIsShowLogin] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const update = useSelector((state: any) => state.update);
-  const fetchUserData = async (userId: number) => {
-    try {
-      const response = await UserAPI.getUserId(userId);
-      setUserData(response.data[0]);
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-    }
-  };
 
   useEffect(() => {
     const userValue = localStorage.getItem("user");
     const user = userValue ? JSON.parse(userValue) : undefined;
-    if (user) {
-      fetchUserData(user.id);
-    }
+    UserAPI.getUserId(user.id).then((user) => {
+      setUserData(user);
+    });
   }, [update, location.pathname]);
 
   useEffect(() => {
@@ -49,7 +46,12 @@ const Profiles: React.FC = () => {
   }, [userData]);
 
   const handleUpdate = async (id: number) => {
+    const formImage = new FormData();
+    if (avatar) {
+      formImage.append("avatar", avatar);
+    }
     const data: IProfile | undefined = {
+      avatar: avatar,
       email: userData?.email,
       firstName: firstName,
       lastName: lastName,
@@ -58,11 +60,12 @@ const Profiles: React.FC = () => {
       newPass: newPass,
       confirmPass: confirmPass,
     };
+
+    setIsLoading(true);
     await UserAPI.updateUser(id, data as any)
-      .then((res) => {
+      .then((res: any) => {
         {
-          console.log(res);
-          toast.success(res.data.message, {
+          toast.success(res.message, {
             position: "top-right",
             autoClose: 500,
             hideProgressBar: false,
@@ -73,7 +76,13 @@ const Profiles: React.FC = () => {
             theme: "light",
           });
         }
+        setIsLoading(false);
         dispatch(updateState());
+        if (res.message == "Update User and Password Successfully") {
+          setTimeout(() => {
+            setIsShowLogin(true);
+          }, 1000);
+        }
       })
       .catch((error: any) => {
         toast.error(error.response.data.message, {
@@ -86,6 +95,7 @@ const Profiles: React.FC = () => {
           progress: undefined,
           theme: "light",
         });
+        setIsLoading(false);
       });
   };
 
@@ -101,6 +111,8 @@ const Profiles: React.FC = () => {
 
   return (
     <div className="mt-4 ">
+      {isShowLogin && <Login />}
+      {isLoading && <Loading />}
       <ToastContainer />
       <div className="container form-profile">
         <h1 className="mb-5 text-center">Your Profile</h1>
@@ -109,10 +121,21 @@ const Profiles: React.FC = () => {
             <div className="p-4">
               <div className="img-circle text-center mb-3">
                 <img
-                  src="/avatar.png"
+                  src={String(userData?.avatar)}
                   alt="..."
                   className="shadow avatar-file"
                 />
+                <label
+                  htmlFor="file-input"
+                  className="fa-regular fa-pen-to-square edit-image"
+                >
+                  <input
+                    type="file"
+                    id="file-input"
+                    style={{ display: "none" }}
+                    onChange={(e: any) => setAvatar(e.target.files[0])}
+                  />
+                </label>
               </div>
               <h4 className="text-center">
                 {userData?.lastName} {userData?.firstName}
@@ -273,12 +296,11 @@ const Profiles: React.FC = () => {
 
               <div className="text-center mt-2">
                 <button
-                  className="btn btn-light"
+                  className="btn btn-light btn-update-user"
                   onClick={() => userData?.id && handleUpdate(userData.id)}
                 >
                   Update
-                </button>{" "}
-                <button className="btn btn-light">Cancel</button>
+                </button>
               </div>
             </div>
           </div>

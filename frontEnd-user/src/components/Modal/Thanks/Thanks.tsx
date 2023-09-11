@@ -4,7 +4,7 @@ import { PayPalButtons } from "@paypal/react-paypal-js";
 import { IOrderDetail, OrderDetail } from "../../../models/OrderDetail";
 import { useNavigate } from "react-router-dom";
 import { HistoryAPI, IHistory } from "../../../models/History";
-import { Order } from "../../../models/Order";
+import { IOrder, Order } from "../../../models/Order";
 import { Products } from "../../../models/Product";
 import { useDispatch } from "react-redux";
 import { updateState } from "../../../store/slice/UpdateProSlice";
@@ -17,7 +17,6 @@ const Thanks: React.FC<any> = ({
   phone,
 }) => {
   const navigate = useNavigate();
-
   const userValue = localStorage.getItem("user");
   const user = userValue ? JSON.parse(userValue) : undefined;
   const dispatch = useDispatch();
@@ -43,8 +42,9 @@ const Thanks: React.FC<any> = ({
   }, [dataArr]);
 
   const handlePaymentSuccess = () => {
-    Order.getOrderById(user.id).then((order: any) => {
-      OrderDetail.getOrderDetailById(order[0].id).then(
+    Order.getOrderById(user.id).then((order: IOrder) => {
+      console.log(order);
+      OrderDetail.getOrderDetailById(order.id!).then(
         (dataDetail: IOrderDetail[]) => {
           dataDetail?.map((e: any) => {
             let values: IHistory = {
@@ -55,7 +55,7 @@ const Thanks: React.FC<any> = ({
               address: address,
               phone: phone,
               status: 2,
-              order_date: order[0].order_date,
+              order_date: order.order_date,
               order_id: Number(e.order_id),
               product_id: Number(e.product_id),
             };
@@ -72,7 +72,7 @@ const Thanks: React.FC<any> = ({
           });
         }
       );
-      return OrderDetail.deleteOrderDetailByHistory(order[0].id);
+      return OrderDetail.deleteOrderDetailByHistory(order!.id!);
     });
 
     navigate("/");

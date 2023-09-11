@@ -1,6 +1,11 @@
-export class LoginDTO {
+import { IsEmail, IsNotEmpty, IsNumber } from 'class-validator';
+
+export class RegisterDTO {
   id?: number;
+  avatar?: string;
+  @IsEmail()
   email?: string;
+  @IsNotEmpty()
   password?: string;
   firstName?: string;
   lastName?: string;
@@ -9,8 +14,16 @@ export class LoginDTO {
   status?: number;
 }
 
+export class LoginDTO {
+  @IsEmail()
+  email?: string;
+  @IsNotEmpty()
+  password?: string;
+}
+
 export class UpdateUserDTO {
   id?: number;
+  avatar?: string;
   email?: string;
   password?: string;
   oldPass?: string;

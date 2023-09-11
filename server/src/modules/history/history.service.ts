@@ -22,7 +22,54 @@ export class HistoryService {
       return { message: err.message };
     }
   }
-  async getAllHistoryByIdOrder(): Promise<History[] | { message: string }> {
+
+  async searchHistoryType(query: {
+    orderID: string;
+    status: string;
+  }): Promise<HistoryDTO[] | { message: string }> {
+    try {
+      let queryBuilder = this.HistoryRepo.createQueryBuilder('History')
+        .leftJoinAndSelect('History.Product', 'Product')
+        .leftJoinAndSelect('History.Order', 'Order');
+
+      if (query.orderID === 'All' && query.status === 'All') {
+        queryBuilder = queryBuilder;
+      } else {
+        if (query.orderID !== 'All') {
+          queryBuilder = queryBuilder.where('History.order_id = :order_id', {
+            order_id: query.orderID,
+          });
+        }
+
+        if (query.status !== 'All') {
+          if (query.status === 'Pending') {
+            queryBuilder = queryBuilder.andWhere('History.status = :status', {
+              status: 1,
+            });
+          } else if (query.status === 'Processing') {
+            queryBuilder = queryBuilder.andWhere('History.status = :status', {
+              status: 2,
+            });
+          } else if (query.status === 'Out for Delivered') {
+            queryBuilder = queryBuilder.andWhere('History.status = :status', {
+              status: 3,
+            });
+          } else if (query.status === 'Delivered') {
+            queryBuilder = queryBuilder.andWhere('History.status = :status', {
+              status: 4,
+            });
+          }
+        }
+      }
+
+      const history = await queryBuilder.getMany();
+      return history;
+    } catch (err) {
+      return { message: err.message };
+    }
+  }
+
+  async getAllHistoryByIdOrder(): Promise<HistoryDTO[] | { message: string }> {
     try {
       const history = this.HistoryRepo.find({
         relations: ['Order', 'Product'],
@@ -34,7 +81,7 @@ export class HistoryService {
   }
   async getHistoryByIdOrder(
     id: number,
-  ): Promise<History[] | { message: string }> {
+  ): Promise<HistoryDTO[] | { message: string }> {
     try {
       const history = this.HistoryRepo.find({
         where: { order_id: id },
@@ -60,6 +107,19 @@ export class HistoryService {
           order_date: Between(startDate, endDate),
         },
         relations: ['Order', 'Product'],
+      });
+      return history;
+    } catch (err) {
+      return { message: err.message };
+    }
+  }
+  async getRevenue(): Promise<History[] | { message: string }> {
+    try {
+      const history = this.HistoryRepo.find({
+        where: {
+          status: 4,
+        },
+        relations: ['Product'],
       });
       return history;
     } catch (err) {

@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { updateState } from "../../../store/slice/UpdateProSlice";
 import Success from "../Success/Success";
 import { IErrorsCreate, IFormCreate } from "../../../types/Type";
+import Loading from "../../Loading/Loading";
 
 const FormCreate: React.FC<IFormCreate> = ({ handleCreate, handleLoading }) => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const FormCreate: React.FC<IFormCreate> = ({ handleCreate, handleLoading }) => {
   const [image4, setImage4] = useState<File | string>("");
   const [errors, setErrors] = useState<IErrorsCreate>({});
   const [isShowSuccess, setIsShowSuccess] = useState<boolean>(false);
-
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const handleFormSubmit = async (e: any) => {
     e.preventDefault();
     let isValid = true;
@@ -80,7 +81,7 @@ const FormCreate: React.FC<IFormCreate> = ({ handleCreate, handleLoading }) => {
         quantity_inventory: quantityInventory,
         image: image,
       };
-
+      setIsLoading(true);
       try {
         const response = await axios.post(
           "http://localhost:8080/api/v1/products/admin-create",
@@ -91,9 +92,10 @@ const FormCreate: React.FC<IFormCreate> = ({ handleCreate, handleLoading }) => {
             },
           }
         );
-
+        setIsLoading(false);
         console.log(response.data);
       } catch (error) {
+        setIsLoading(false);
         console.error(error);
       }
 
@@ -105,6 +107,7 @@ const FormCreate: React.FC<IFormCreate> = ({ handleCreate, handleLoading }) => {
       formImage.append("images", image3);
       formImage.append("images", image4);
       formImage.append("product_id", String(productLast.id));
+      setIsLoading(true);
 
       try {
         const response = await axios.post(
@@ -116,9 +119,10 @@ const FormCreate: React.FC<IFormCreate> = ({ handleCreate, handleLoading }) => {
             },
           }
         );
-
+        setIsLoading(false);
         console.log(response.data);
       } catch (error) {
+        setIsLoading(false);
         console.error(error);
       }
       setIsShowSuccess(true);
@@ -136,6 +140,7 @@ const FormCreate: React.FC<IFormCreate> = ({ handleCreate, handleLoading }) => {
 
   return (
     <div className="modal">
+      {isLoading && <Loading />}
       {isShowSuccess && <Success closeSuccess={closeSuccess} />}
       <div className="modal-null">
         <form className="form-create" onSubmit={handleFormSubmit}>

@@ -1,33 +1,34 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { setSideBar } from "../../../store/slice/GetProductSlice";
+import { Link } from "react-router-dom";
 
 const Price: React.FC = () => {
-  const dispatch = useDispatch();
-  const handleClickSidebar = (minPrice: number, maxPrice: number) => {
-    dispatch(setSideBar({ min: minPrice, max: maxPrice }));
-  };
   return (
     <div className="p-3 d-flex flex-column">
       <h4>Filter by Price</h4>
-      <div
-        className="mt-2 mt-4 cursor-pointer btn btn-light"
-        onClick={() => handleClickSidebar(179, 329)}
-      >
-        <p className="ml-1 m-0">179 $ - 329 $</p>
+      <div className="mt-2 mt-4 cursor-pointer btn btn-light">
+        <Link
+          className="ml-1 m-0 btn-active"
+          to="/products?type=Men%27s%20Shoes&type=Kid%27s%20Shoes&type=Woman%27s%20Shoes&minPrice=179&maxPrice=329"
+        >
+          179 $ - 329 $
+        </Link>
       </div>
-      <div
-        className="mt-4 cursor-pointer btn btn-light"
-        onClick={() => handleClickSidebar(329, 499)}
-      >
-        <p className="ml-1 m-0">329 $ - 499 $</p>
+      <div className="mt-4 cursor-pointer btn btn-light">
+        <Link
+          className="ml-1 m-0"
+          to="/products?type=Men%27s%20Shoes&type=Kid%27s%20Shoes&type=Woman%27s%20Shoes&minPrice=329&maxPrice=499"
+        >
+          329 $ - 499 $
+        </Link>
       </div>
 
-      <div
-        className="mt-2 mt-4 cursor-pointer btn btn-light"
-        onClick={() => handleClickSidebar(499, Infinity)}
-      >
-        <p className="ml-1 m-0">Above 499 $</p>
+      <div className="mt-2 mt-4 cursor-pointer btn btn-light">
+        <Link
+          className="ml-1 m-0"
+          to="/products?type=Men%27s%20Shoes&type=Kid%27s%20Shoes&type=Woman%27s%20Shoes&minPrice=499&maxPrice=1000"
+        >
+          Above 499 $
+        </Link>
       </div>
     </div>
   );

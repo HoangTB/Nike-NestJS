@@ -5,6 +5,9 @@ import ConfirmDelete from "../Modal/Confirm-Delete/Confirm-Delete";
 import Loading from "../Loading/Loading";
 import FormUpdate from "../Modal/FormUpdate/FormUpdate";
 import FormCreate from "../Modal/FormCreate/FormCreate";
+import FormFilter from "../Modal/FormFilter/FormFilter";
+import { useLocation } from "react-router-dom";
+import queryString from "query-string";
 const ProductManager: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isLoadings, setIsLoadings] = useState<boolean>(false);
@@ -16,21 +19,28 @@ const ProductManager: React.FC = () => {
   const [dataEdit, setDataEdit] = useState<IProducts[] | []>([]);
   const [products, setProduct] = React.useState<Array<IProducts>>([]);
   const [currentPage, setCurrentPage] = React.useState(1);
+
   const productsPerPage = 10;
+  const location = useLocation();
+  const queryParams = queryString.parse(location.search);
+
   useEffect(() => {
-    ProductsServer.getProduct()
+    ProductsServer.searchProductType(queryParams)
       .then((product) => setProduct(product))
       .catch((err) => {
         console.log(err);
       });
-  }, [isLoading]);
+  }, [location.search, isLoading]);
+
+  const productFilter = products.filter((product) => product.status === 0);
   // Tính toán sản phẩm hiển thị trên trang hiện tại
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(
+  const currentProducts = productFilter.slice(
     indexOfFirstProduct,
     indexOfLastProduct
   );
+
   const handleDeleteProduct = async (id: number) => {
     idDelete.current = id;
     setIsShow(!isShow);
@@ -62,6 +72,7 @@ const ProductManager: React.FC = () => {
 
     setIsLoadings(false);
   };
+
   return (
     <div className="content-user">
       {isLoadings && <Loading />}
@@ -92,6 +103,7 @@ const ProductManager: React.FC = () => {
           >
             CREATE
           </button>
+          <FormFilter />
         </div>
         <table>
           <thead>

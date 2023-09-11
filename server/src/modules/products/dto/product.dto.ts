@@ -8,5 +8,6 @@ export class ProductDTO {
   price?: number;
   new?: number;
   quantity_inventory?: number;
+  status?: number;
   Image?: ImageDTO;
 }

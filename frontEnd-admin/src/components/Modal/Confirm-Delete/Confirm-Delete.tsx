@@ -9,6 +9,8 @@ const ConfirmDelete: React.FC<IConfirmDeleteProps> = ({
 }) => {
   const handleSuccess = async () => {
     if (idDelete !== null) {
+      console.log(idDelete);
+
       await ProductsServer.deleteProduct(idDelete)
 
         .then(() => {

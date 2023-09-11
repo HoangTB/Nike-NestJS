@@ -6,15 +6,13 @@ export const login = createAsyncThunk(
   async (userData: ILoginUser) => {
     try {
       const response = await UserAPI.login(userData);
-
       if (response.data.user.status === 1) {
         localStorage.setItem("user", JSON.stringify(response.data.user));
         localStorage.setItem("accessToken", response.data.accessToken);
+        return response;
       } else {
         return { message: "Account has been locked" };
       }
-
-      return response;
     } catch (error) {
       return error;
     }
@@ -44,6 +42,7 @@ const userSlice = createSlice({
       state.data = action.payload?.data?.user;
       state.token = action.payload?.data?.accessToken;
       state.isLoggedIn = true;
+      return state;
     },
   },
 });

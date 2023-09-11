@@ -57,3 +57,29 @@ li {
 .title-footer-small:hover {
   color: white;
 }
+
+@media (max-width: 1590px) {
+  footer{
+    padding: 10px;
+  }
+  iframe {
+  height: 150px;
+  width: 150px;
+}
+.footer-right ul{
+  flex-direction: column;
+  gap: 10px;
+}
+}
+
+@media (max-width: 1111px) {
+  iframe{
+    display: none;
+  }
+  
+}
+@media (max-width: 430px) {
+  .footer-right ul{
+    display: none;
+  }
+}

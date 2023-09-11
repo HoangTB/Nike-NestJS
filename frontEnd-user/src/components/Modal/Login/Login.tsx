@@ -1,6 +1,5 @@
 import React from "react";
 import "./Login.css";
-import { Link } from "react-router-dom";
 
 const Login: React.FC = () => {
   return (
@@ -8,9 +7,9 @@ const Login: React.FC = () => {
       <div className="modal-null-login">
         <p>Session expired, please log in again !</p>
         <div className="modal-null-button">
-          <Link to="/login">
+          <a href="/login">
             <button className="login-btn-ok">Login</button>
-          </Link>
+          </a>
         </div>
       </div>
     </div>

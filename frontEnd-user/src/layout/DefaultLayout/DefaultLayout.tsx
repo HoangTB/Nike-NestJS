@@ -3,23 +3,12 @@ import Header from "../../components/Header/Header";
 import SwiperNotification from "../../components/SwiperNotification/SwiperNotification";
 import Footer from "../../components/Footer/Footer";
 import { DefaultLayoutProps } from "../../types/Types";
-import { IProducts } from "../../models/Product";
 import Navbar from "../../components/Navbar/Navbar";
-const DefaultLayout: React.FC<DefaultLayoutProps> = ({
-  children,
-  onFilteredOptionsApp,
-}) => {
-  const onFilteredOptions = async (filteredOptions: IProducts[]) => {
-    try {
-      await onFilteredOptionsApp!(filteredOptions);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
   return (
     <>
       <Header />
-      <Navbar onFilteredOptions={onFilteredOptions} />
+      <Navbar />
       <SwiperNotification />
       <br />
       {children}

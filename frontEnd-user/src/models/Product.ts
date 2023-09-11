@@ -1,5 +1,14 @@
 import axiosClient from "../api/AxiosClient";
 
+export interface IImage {
+  id?: number;
+  image_1?: string;
+  image_2?: string;
+  image_3?: string;
+  image_4?: string;
+  product_id?: number;
+}
+
 export interface IProducts {
   id?: number;
   name?: string;
@@ -8,19 +17,8 @@ export interface IProducts {
   price?: number;
   new?: number;
   quantity_inventory?: number;
-  Images?: any[];
-}
-
-export interface IProductMerger {
-  product_id?: number;
-  quantity?: number;
-  size_product?: string;
-  Product?: {
-    name?: string;
-    type?: string;
-    image?: string;
-    price?: number;
-  };
+  status?: number;
+  Image?: IImage;
 }
 
 export class Products {
@@ -32,12 +30,14 @@ export class Products {
     const url = "api/v1/products/search";
     return axiosClient.get(url, { params });
   }
+
+  static searchProductName(params: any): Promise<Array<IProducts>> {
+    const url = "api/v1/products/search-name";
+    return axiosClient.get(url, { params });
+  }
+
   static getProductById(id: number): Promise<IProducts> {
     const url = `api/v1/products/${id}`;
-    return axiosClient.get(url);
-  }
-  static getProductMerger(id: number): Promise<IProductMerger> {
-    const url = `api/v1/products/order-orderDetail/${id}`;
     return axiosClient.get(url);
   }
 

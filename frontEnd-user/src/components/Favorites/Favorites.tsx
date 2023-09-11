@@ -67,6 +67,13 @@ const Favorites: React.FC = () => {
                             <span className="value">{item.Product!.type}</span>
                           </div>
                         </div>
+                        <div className="product-info">
+                          <div>
+                            <span className="value">
+                              {item.Product!.price} $
+                            </span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

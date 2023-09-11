@@ -21,7 +21,7 @@ export class Images {
   image_4: string;
   @Column()
   product_id: number;
-  @OneToOne(() => Products, (product) => product.Image)
+  @OneToOne(() => Products, (product) => product.Image, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'product_id' })
   Product: Products;
 }

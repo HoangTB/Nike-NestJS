@@ -24,6 +24,11 @@ export interface IHistory {
   Order?: IOrder;
 }
 
+export interface IDate {
+  dataMonth: string;
+  dataYear: string;
+}
+
 export class HistoryAPIServer {
   static getHistoryIdOrder(id: number): Promise<IHistory> {
     const url: string = `/api/v1/history/get-orderID/${id}`;
@@ -34,6 +39,10 @@ export class HistoryAPIServer {
     const url: string = "/api/v1/history/get-orderID/";
     return axiosClient.get(url);
   }
+  static getRevenue(): Promise<IHistory[]> {
+    const url: string = "/api/v1/history/get-revenue";
+    return axiosClient.get(url);
+  }
   static updateHistoryStatus(id: number, params: IStatusValue) {
     const url: string = `/api/v1/history/update/${id}`;
     return axiosClient.patch(url, params);
@@ -41,5 +50,9 @@ export class HistoryAPIServer {
   static getHistoryWithMonth(params: string): Promise<Array<IHistory>> {
     const url: string = "/api/v1/history/get-month";
     return axiosClient.post(url, params);
+  }
+  static searchHistoryType(params: any): Promise<Array<IHistory>> {
+    const url = "api/v1/history/search";
+    return axiosClient.get(url, { params });
   }
 }

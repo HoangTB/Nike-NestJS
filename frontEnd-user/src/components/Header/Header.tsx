@@ -5,17 +5,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { UserAPI } from "../../models/LoginRegister";
 import { updateState } from "../../store/slice/UpdateProSlice";
 const Header: React.FC = () => {
-  const [user, setUser] = useState<any>([]);
+  const [user, setUser] = useState<any>("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const update = useSelector((state: any) => state.update);
   let userLocal: any;
-
   useEffect(() => {
     let userData = localStorage.getItem("user");
     userLocal = userData ? JSON.parse(userData) : undefined;
-
     if (userLocal) {
       UserAPI.getUserId(Number(userLocal?.id))
         .then((e: any) => {
@@ -23,7 +21,7 @@ const Header: React.FC = () => {
         })
         .catch();
     } else {
-      setUser([]);
+      setUser("");
     }
   }, [update]);
 
@@ -65,10 +63,10 @@ const Header: React.FC = () => {
             <li>
               <Link to="/help">Help</Link>
             </li>
-            {user.data ? (
+            {user !== "" ? (
               <li>
-                <Link to="#">
-                  Hi {user.data[0].lastName} {user.data[0].firstName}
+                <Link to="/profiles">
+                  Hi {user.lastName} {user.firstName}
                 </Link>
               </li>
             ) : (
@@ -77,7 +75,7 @@ const Header: React.FC = () => {
               </li>
             )}
           </ul>
-          {user.data ? (
+          {user ? (
             <div className="user-dropdown">
               <i
                 className={"fa-solid fa-user fa-fade i-user "}
