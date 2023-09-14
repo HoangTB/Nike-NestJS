@@ -84,7 +84,7 @@ const FormCreate: React.FC<IFormCreate> = ({ handleCreate, handleLoading }) => {
       setIsLoading(true);
       try {
         const response = await axios.post(
-          "http://localhost:8080/api/v1/products/admin-create",
+          "https://server-0169.onrender.com/api/v1/products/admin-create",
           formProduct,
           {
             headers: {
@@ -111,7 +111,7 @@ const FormCreate: React.FC<IFormCreate> = ({ handleCreate, handleLoading }) => {
 
       try {
         const response = await axios.post(
-          "http://localhost:8080/api/v1/images/admin-create",
+          "https://server-0169.onrender.com/api/v1/images/admin-create",
           formImage,
           {
             headers: {

@@ -1,7 +1,7 @@
 import axios, { AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
 const AxiosClientFormData = axios.create({
-  baseURL: "http://localhost:8080/",
+  baseURL: "https://server-0169.onrender.com/",
   headers: {
     "Content-Type": "multipart/form-data",
   },

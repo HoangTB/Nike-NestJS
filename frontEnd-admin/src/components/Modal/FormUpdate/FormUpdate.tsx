@@ -98,7 +98,7 @@ const FormUpdate: React.FC<IFormUpdate> = ({
       setIsLoading(true);
       try {
         const response: any = await axios.patch(
-          `http://localhost:8080/api/v1/products/admin-update/${idUpdate}`,
+          `https://server-0169.onrender.com/api/v1/products/admin-update/${idUpdate}`,
           formProduct,
           {
             headers: {
@@ -121,7 +121,7 @@ const FormUpdate: React.FC<IFormUpdate> = ({
       setIsLoading(true);
       try {
         const response: any = await axios.patch(
-          `http://localhost:8080/api/v1/images/admin-update/${idUpdate}`,
+          `https://server-0169.onrender.com/api/v1/images/admin-update/${idUpdate}`,
           formImage,
           {
             headers: {

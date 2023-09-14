@@ -47,17 +47,17 @@ export interface IUser {
 }
 export class UserAPI {
   static register(param: IRegister): Promise<any> {
-    const url = "http://localhost:8080/api/v1/users/register";
+    const url = "https://server-0169.onrender.com/api/v1/users/register";
 
     return axios.post(url, param);
   }
   static login(param: ILoginUser): Promise<any> {
-    const url = "http://localhost:8080/api/v1/users/login";
+    const url = "https://server-0169.onrender.com/api/v1/users/login";
     return axios.post(url, param, { withCredentials: true });
   }
 
   static getUserId(id: number) {
-    const url = `http://localhost:8080/api/v1/users/${id}`;
+    const url = `https://server-0169.onrender.com/api/v1/users/${id}`;
     return axiosClient.get(url);
   }
   static getUserIdOrder(id: number) {
