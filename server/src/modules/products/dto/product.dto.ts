@@ -1,3 +1,4 @@
+import { IsNotEmpty } from 'class-validator';
 import { ImageDTO } from '../../images/dto/image.dto';
 
 export class ProductDTO {

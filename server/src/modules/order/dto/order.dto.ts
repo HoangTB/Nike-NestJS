@@ -1,3 +1,5 @@
+import { IsNotEmpty } from 'class-validator';
+
 export class OrderDTO {
   id?: number;
   status?: number;

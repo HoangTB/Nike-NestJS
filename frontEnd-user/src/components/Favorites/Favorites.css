@@ -1,4 +1,7 @@
 
+.form-favorite-top{
+  min-height: 65vh;
+}
 
 .favorite-items{
   text-align: center;
@@ -6,4 +9,18 @@
 }
 .delete-circle{
   cursor: pointer !important;
+}
+@media(max-width:997px){
+.product-name{
+  width: 400px;
+}
+}
+
+@media(max-width:770px){
+.form-favorite-child{
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px;
+}
+
 }

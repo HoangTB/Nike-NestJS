@@ -1,3 +1,4 @@
+import { IsNotEmpty } from 'class-validator';
 import { ProductDTO } from '../../products/dto/product.dto';
 
 export class HistoryDTO {

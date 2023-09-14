@@ -14,9 +14,20 @@ export class UsersService {
     @InjectRepository(Users)
     private UserRepo: Repository<Users>,
   ) {}
+
   async getUser(): Promise<LoginDTO[]> {
     try {
       const users = await this.UserRepo.find();
+      return users;
+    } catch (err) {
+      return err;
+    }
+  }
+  async getUserOrder(): Promise<LoginDTO[]> {
+    try {
+      const users = await this.UserRepo.find({
+        relations: ['Order'],
+      });
       return users;
     } catch (err) {
       return err;
@@ -54,7 +65,6 @@ export class UsersService {
     if (existingUser) {
       return { message: 'Email already exists' };
     }
-
     // Hash mật khẩu trước khi lưu vào database
     const saltRounds = 10;
     const salt = await bcrypt.genSalt(saltRounds);
@@ -88,7 +98,7 @@ export class UsersService {
             { password: user.password },
             process.env.secretKey,
             {
-              expiresIn: '180s',
+              expiresIn: '120s',
             },
           );
 
@@ -99,7 +109,6 @@ export class UsersService {
               expiresIn: '365d',
             },
           );
-          // Tạo refreshToken để dự trữ
           refreshTokenArr.push(refreshToken);
 
           const { password, ...data } = user;
@@ -147,7 +156,7 @@ export class UsersService {
             (token: string) => token !== refreshToken,
           );
           const newAccessToken = jwt.sign(userOther, process.env.secretKey, {
-            expiresIn: '180s',
+            expiresIn: '120s',
           });
           const newRefreshToken = jwt.sign(
             userOther,

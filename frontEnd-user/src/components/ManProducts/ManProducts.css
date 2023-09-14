@@ -37,7 +37,9 @@
   grid-template-columns: auto auto auto;
   gap: 40px;
 }
-
+.image-add{
+  width: 500px;
+}
 /* Kiểu dáng của liên kết khi được nhấn vào */
 
 @media (max-width: 1895px) {
@@ -60,5 +62,12 @@
     justify-content: center;
   }
 }
-@media (max-width: 663px) {
+@media (max-width: 610px) {
+  .image-add{
+  width: 300px;
 }
+
+}
+
+
+

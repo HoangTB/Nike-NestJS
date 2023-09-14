@@ -8,7 +8,7 @@ const KidsAd: React.FC = () => {
         <div className="image-wrapper mt-4 mb-5">
           <img
             className="d-none d-lg-block d-md-block w-100"
-            src="https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_1824,c_limit/cfc94562-b61c-4c31-8601-f721d8bb75a7/resmi-nike-sitesi.jpg"
+            src="https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_1824,c_limit/79cf6b2d-1216-4d22-a3cd-e9fca50ddebe/nike-just-do-it.png"
             alt="Kids Ad Maintain"
           />
         </div>

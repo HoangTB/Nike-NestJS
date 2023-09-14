@@ -55,26 +55,12 @@ const Review: React.FC = () => {
           .catch((err) => console.log(err));
       } else {
         toast.warn("Please complete all Information !", {
-          position: "top-right",
           autoClose: 500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
         });
       }
     } else {
       toast.error("Please Login !", {
-        position: "top-right",
         autoClose: 500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
       });
       setTimeout(() => {
         navigate("/login");

@@ -1,5 +1,6 @@
 .shopping-cart {
   padding: 100px 40px;
+  min-height: 65vh;
 }
 
 .shopping-cart.dark {
@@ -119,4 +120,24 @@
 .shopping-cart button:hover {
   background-color: rgb(0, 0, 0);
   color: white;
+}
+@media (max-width: 790px) {
+  .form-select {
+    width: 80px;
+  }
+  .form-row {
+    width: 600px;
+  }
+  .form-content-cart {
+    gap: 30px;
+  }
+  .price {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 610px) {
+  .form-row {
+    width: 400px;
+  }
 }

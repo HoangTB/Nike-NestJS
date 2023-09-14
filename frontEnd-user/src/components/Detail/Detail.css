@@ -38,7 +38,6 @@ tbody .td {
 
 tbody th {
   height: 100px;
-
 }
 
 tbody .td:hover {
@@ -70,4 +69,69 @@ tbody .td:hover {
   color: white;
   border: 1px solid gray;
 }
+.form-rating-review {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+@media (max-width: 1365px) {
+  .form-container {
+    display: grid !important;
+    width: 100%;
+    margin: 0 !important;
+  }
+  .list-image {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center;
+    gap: 20px;
+  }
+  .col-8 {
+    display: flex !important;
+    width: 80%;
+    justify-content: center !important;
+  }
+  .col-4 {
+    width: 78%;
+  }
 
+  .table-size {
+    width: 100%;
+  }
+
+  tbody .td {
+    height: 60px;
+  }
+  .container-review {
+    width: 78%;
+  }
+}
+@media (max-width: 1045px) {
+  .form-row-detail {
+    width: 800px;
+  }
+}
+
+@media (max-width: 650px) {
+  .card img {
+    width: 400px;
+  }
+  .card {
+    align-items: center;
+  }
+  .col-4 {
+    width: 400px;
+  }
+  .container-review {
+    width: 400px;
+    flex-direction: column !important;
+    align-items: center;
+  }
+  .textarea-form {
+    width: 300px !important;
+  }
+  .form-comment {
+    width: 300px !important;
+  }
+}

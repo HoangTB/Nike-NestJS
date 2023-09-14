@@ -77,37 +77,28 @@ const RegisterForm: React.FC<LoginRegisterFormProps> = ({ setIsShow }) => {
 
       UserAPI.register(userCreate as any)
         .then((data) => {
-          toast.success(data.data.message, {
-            position: "top-right",
-            autoClose: 500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-
-          setTimeout(() => {
-            setIsShow(true);
-          }, 2000);
+          if (data.data.message === "Create User Successfully") {
+            toast.success(data.data.message, {
+              autoClose: 500,
+            });
+            setTimeout(() => {
+              setIsShow(true);
+            }, 1500);
+          } else {
+            toast.error(data.data.message, {
+              autoClose: 500,
+            });
+          }
         })
         .catch((error) => {
           toast.error(error.response.data.message, {
-            position: "top-right",
             autoClose: 500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
           });
         });
     }
   };
   return (
-    <div className="d-flex flex-column justify-content-center align-items-center ">
+    <div className="d-flex flex-column justify-content-center align-items-center register-form">
       <ToastContainer />
       <div className="nike-unite-swoosh">
         <img

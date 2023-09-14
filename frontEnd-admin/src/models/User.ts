@@ -1,4 +1,5 @@
 import axiosClient from "../api/AxiosClient";
+import { IOrder } from "./History";
 
 export interface IUser {
   id: number;
@@ -9,11 +10,16 @@ export interface IUser {
   birthday: Date;
   role: number;
   status: number;
+  Order?: IOrder;
 }
 
 export class UserAPIServer {
   static getAllUser(): Promise<Array<IUser>> {
     const url = "api/v1/users";
+    return axiosClient.get(url);
+  }
+  static getAllUserOrder(): Promise<Array<IUser>> {
+    const url = "api/v1/users/get-order";
     return axiosClient.get(url);
   }
   static getAllUserById(id: number): Promise<IUser> {

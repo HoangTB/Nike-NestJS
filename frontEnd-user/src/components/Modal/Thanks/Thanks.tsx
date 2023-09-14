@@ -23,27 +23,22 @@ const Thanks: React.FC<any> = ({
   const resultValue = useMemo(() => {
     const cartItems = dataArr.map((item: any) => {
       return {
-        name: item.Product.name,
         quantity: item.quantity,
         unit_amount: {
-          currency_code: "USD",
           value: item.Product.price,
         },
       };
     });
-    // console.log(cartItems);
     const total = cartItems?.reduce(
       (pre: any, urr: any) =>
         pre + Number(urr.unit_amount?.value * urr.quantity),
       0
     );
-    // console.log(total);
     return total;
   }, [dataArr]);
 
   const handlePaymentSuccess = () => {
     Order.getOrderById(user.id).then((order: IOrder) => {
-      console.log(order);
       OrderDetail.getOrderDetailById(order.id!).then(
         (dataDetail: IOrderDetail[]) => {
           dataDetail?.map((e: any) => {
@@ -61,7 +56,11 @@ const Thanks: React.FC<any> = ({
             };
             Products.getProductById(Number(e.product_id)).then(
               (product: any) => {
+                console.log(product);
+
                 let updateInventory = product.quantity_inventory - e.quantity;
+                console.log(updateInventory);
+
                 Products.updateProduct(e.product_id, {
                   quantity_inventory: updateInventory,
                 } as any);
@@ -87,7 +86,7 @@ const Thanks: React.FC<any> = ({
         ></i>
         <p>Click here to pay !</p>
 
-        <div className="modal-null-button">
+        <div className="">
           <PayPalButtons
             style={{
               layout: "horizontal",

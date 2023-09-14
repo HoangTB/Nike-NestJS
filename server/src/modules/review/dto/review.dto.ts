@@ -1,3 +1,5 @@
+import { IsNotEmpty } from 'class-validator';
+
 export class ReviewDTO {
   id?: number;
   content?: string;

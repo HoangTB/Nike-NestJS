@@ -9,6 +9,7 @@ import {
   Req,
   UseInterceptors,
   UploadedFiles,
+  UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Users } from './database/users.entity';
@@ -30,6 +31,10 @@ export class UserController {
   getUser() {
     return this.UserService.getUser();
   }
+  @Get('/get-order')
+  getUserOrder() {
+    return this.UserService.getUserOrder();
+  }
   @Get('/:id')
   getUserId(@Param('id') id: number) {
     return this.UserService.getUserId(id);
@@ -38,6 +43,7 @@ export class UserController {
   getUserIdOrder(@Param('id') id: number) {
     return this.UserService.getUserIdOrder(id);
   }
+
   @Post('/register')
   createUser(@Body() data: RegisterDTO) {
     return this.UserService.createUser(data);
@@ -67,7 +73,6 @@ export class UserController {
     @Res() res: Response,
   ) {
     const user = await this.UserRepo.findOneBy({ id });
-
     if (files && files.avatar) {
       data.avatar = files.avatar[0].path;
     } else {

@@ -1,5 +1,8 @@
 .form-login {
-  min-height: 45vh;
+  height:60vh;
+}
+.register-form {
+  height:70vh;
 }
 .checkbox-container {
   position: relative;
@@ -202,4 +205,20 @@
 .text-logres {
   font-weight: 500;
   cursor: pointer;
+}
+
+.google-img{
+  width:25px;
+}
+.form-google{
+  display: flex;
+  justify-content: center;
+}
+.google{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+
+  background-color: white;
+   
 }

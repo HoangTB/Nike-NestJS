@@ -14,12 +14,7 @@ const Card: React.FC<any> = ({ productFilter }) => {
                 className="fa-solid fa-circle-info detail-product-detail"
                 to={`/detail/${e.id}`}
               />
-              <img
-                className="mb-2 image-add"
-                src={e.image}
-                alt="..."
-                style={{ width: "500px" }}
-              />
+              <img className="mb-2 image-add" src={e.image} alt="..." />
               <div className="d-flex flex-column">
                 {e?.new === 1 ? (
                   <span className="text-warning">New Arrival</span>

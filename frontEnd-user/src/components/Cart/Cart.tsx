@@ -55,14 +55,7 @@ const Cart: React.FC = () => {
       return OrderDetail.getOrderDetailById(res.Order!.id!).then((data) => {
         if (data.length === 0) {
           toast.error("Please order products !", {
-            position: "top-right",
             autoClose: 500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
           });
         } else {
           navigate("/payment");
@@ -76,7 +69,7 @@ const Cart: React.FC = () => {
       <ToastContainer />
       <div className="">
         <div className="content">
-          <div className="row">
+          <div className="row form-row">
             <div className="col-md-12 col-lg-8">
               <div className="items">
                 <div className="row gap-3">
@@ -88,7 +81,7 @@ const Cart: React.FC = () => {
 
                       return (
                         <div
-                          className="d-flex align-items-center justify-content-between"
+                          className="d-flex align-items-center justify-content-between form-content-cart"
                           key={index}
                         >
                           <i
@@ -149,7 +142,7 @@ const Cart: React.FC = () => {
                               </div>
 
                               <div className="col-md-4 price fw-bold">
-                                <span className="">
+                                <span className="form-cart-price">
                                   {(
                                     data.Product!.price! * data.quantity!
                                   ).toLocaleString()}{" "}

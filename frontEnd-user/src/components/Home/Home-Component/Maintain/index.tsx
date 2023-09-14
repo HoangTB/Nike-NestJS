@@ -19,7 +19,7 @@ const Maintain: React.FC = () => {
               </div>
             </div>
             <img
-              src="https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_906,c_limit/6dafc759-2932-41c8-aa49-8a04f9f7d334/resmi-nike-sitesi.jpg"
+              src="https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_906,c_limit/d5062dbc-5dfb-46b9-b463-44339085123f/nike-just-do-it.png"
               alt="styles that will take you forward"
               className="img-fluid"
             />
@@ -36,7 +36,7 @@ const Maintain: React.FC = () => {
               </div>
             </div>
             <img
-              src="https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_906,c_limit/af8120d1-f968-41c5-a5dc-1bc02251ca7a/resmi-nike-sitesi.jpg"
+              src="https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_906,c_limit/e49814c0-2f56-41f4-ba4a-5f2d2e550c16/nike-just-do-it.png"
               alt="styles that will take you forward"
               className="img-fluid"
             />

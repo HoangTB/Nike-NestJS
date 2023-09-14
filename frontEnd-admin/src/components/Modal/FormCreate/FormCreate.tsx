@@ -12,11 +12,11 @@ const FormCreate: React.FC<IFormCreate> = ({ handleCreate, handleLoading }) => {
   const dispatch = useDispatch();
   const [name, setName] = useState<string>("");
   const [type, setType] = useState<string>("");
-  const [price, setPrice] = useState<number | null>(null);
-  const [news, setNews] = useState<number | null>(null);
-  const [quantityInventory, setQuantityInventory] = useState<number | null>(
-    null
-  );
+  const [price, setPrice] = useState<number | undefined>(undefined);
+  const [news, setNews] = useState<number | undefined>(undefined);
+  const [quantityInventory, setQuantityInventory] = useState<
+    number | undefined
+  >(undefined);
   const [image, setImage] = useState<File | string>("");
   const [image1, setImage1] = useState<File | string>("");
   const [image2, setImage2] = useState<File | string>("");
@@ -183,10 +183,11 @@ const FormCreate: React.FC<IFormCreate> = ({ handleCreate, handleLoading }) => {
                   type="text"
                   className="form-control"
                   placeholder="Price"
-                  value={price!}
                   onChange={(e) =>
                     setPrice(
-                      e.target.value !== "" ? parseInt(e.target.value) : null
+                      e.target.value !== ""
+                        ? parseInt(e.target.value)
+                        : undefined
                     )
                   }
                 />
@@ -196,7 +197,9 @@ const FormCreate: React.FC<IFormCreate> = ({ handleCreate, handleLoading }) => {
                 <select
                   onChange={(e) =>
                     setNews(
-                      e.target.value !== "" ? parseInt(e.target.value) : null
+                      e.target.value !== undefined
+                        ? parseInt(e.target.value)
+                        : undefined
                     )
                   }
                   className="form-control"
@@ -212,10 +215,11 @@ const FormCreate: React.FC<IFormCreate> = ({ handleCreate, handleLoading }) => {
                   type="text"
                   className="form-control"
                   placeholder="Quantity_inventory"
-                  value={quantityInventory!}
                   onChange={(e) =>
                     setQuantityInventory(
-                      e.target.value !== "" ? parseInt(e.target.value) : null
+                      e.target.value !== ""
+                        ? parseInt(e.target.value)
+                        : undefined
                     )
                   }
                 />

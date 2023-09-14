@@ -32,7 +32,6 @@ const RevenueManager: React.FC = () => {
     (total, h) => total + (h.quantity || 0),
     0
   );
-  console.log(history);
 
   return (
     <div className="content-user">

@@ -66,14 +66,7 @@ const Profiles: React.FC = () => {
       .then((res: any) => {
         {
           toast.success(res.message, {
-            position: "top-right",
             autoClose: 500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
           });
         }
         setIsLoading(false);
@@ -86,14 +79,7 @@ const Profiles: React.FC = () => {
       })
       .catch((error: any) => {
         toast.error(error.response.data.message, {
-          position: "top-right",
           autoClose: 500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
         });
         setIsLoading(false);
       });
@@ -110,13 +96,13 @@ const Profiles: React.FC = () => {
   };
 
   return (
-    <div className="mt-4 ">
+    <div className="mt-4 form-profile-top">
       {isShowLogin && <Login />}
       {isLoading && <Loading />}
       <ToastContainer />
-      <div className="container form-profile">
+      <div className="form-profile">
         <h1 className="mb-5 text-center">Your Profile</h1>
-        <div className="bg-white rounded-lg d-block d-sm-flex">
+        <div className="bg-white rounded-lg d-block d-sm-flex profile-tab-top">
           <div className="profile-tab-nav border-right">
             <div className="p-4">
               <div className="img-circle text-center mb-3">
@@ -150,7 +136,7 @@ const Profiles: React.FC = () => {
               {" "}
             </div>
           </div>
-          <div className="tab-content p-2 p-md-5" id="v-pills-tabContent">
+          <div className="tab-content" id="v-pills-tabContent">
             <div
               className="tab-pane fade show active"
               id="account"

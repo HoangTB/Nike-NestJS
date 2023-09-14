@@ -3,15 +3,14 @@ import { IsEmail, IsNotEmpty, IsNumber } from 'class-validator';
 export class RegisterDTO {
   id?: number;
   avatar?: string;
-  @IsEmail()
   email?: string;
-  @IsNotEmpty()
   password?: string;
   firstName?: string;
   lastName?: string;
   birthday?: Date;
   role?: number;
   status?: number;
+  type?: number;
 }
 
 export class LoginDTO {

@@ -67,14 +67,7 @@ const Detail: React.FC = () => {
     setIsLoading(true);
     if (!user) {
       toast.error("Please Login !", {
-        position: "top-right",
         autoClose: 500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
       });
       setTimeout(() => {
         navigate("/login");
@@ -96,14 +89,7 @@ const Detail: React.FC = () => {
       if (!selectSizes[0]) {
         setIsLoading(false);
         toast.warn("Please choose size !", {
-          position: "top-right",
           autoClose: 500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
         });
       } else {
         setIsLoading(false);
@@ -128,14 +114,7 @@ const Detail: React.FC = () => {
             .then((res) => {
               console.log(res);
               toast.success("Added to the Cart!", {
-                position: "top-right",
                 autoClose: 500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
               });
             })
             .catch((err) => {
@@ -150,14 +129,7 @@ const Detail: React.FC = () => {
           };
           OrderDetail.postOrderDetail(orderDetailValue).then(() => {
             toast.success("Added to the Cart!", {
-              position: "top-right",
               autoClose: 500,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
             });
 
             dispatch(updateState());
@@ -178,26 +150,12 @@ const Detail: React.FC = () => {
     FavoriteAPI.createFavorite(favoriteValue)
       .then((res: any) =>
         toast.success(res.message, {
-          position: "top-right",
           autoClose: 500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
         })
       )
       .catch((error: any) =>
         toast.error(error.response.data.message, {
-          position: "top-right",
           autoClose: 500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
         })
       );
   };
@@ -205,9 +163,9 @@ const Detail: React.FC = () => {
     <div className="container1 forms">
       <ToastContainer />
       {isLoading && <Loading />}
-      <div className="container">
+      <div className="container form-container">
         {products?.Image !== undefined && (
-          <div className="row list-image gap-6">
+          <div className="row list-image gap-6 form-row-detail">
             <div className="col-8">
               <div className="row row-cols-1 row-cols-md-2 g-1 listimage-detail">
                 <div className="col">
@@ -253,11 +211,14 @@ const Detail: React.FC = () => {
                 <h3 className="text-danger">{products?.name}</h3>
                 <h5 className="fst-italic pb-2">{products?.type}</h5>
                 <h5 className="mb-2">{products?.price} $</h5>
-                <Rating
-                  size={30}
-                  initialValue={averageStars ? averageStars : 0}
-                  readonly={true}
-                />
+                <div className="form-rating-review">
+                  <Rating
+                    size={30}
+                    initialValue={averageStars ? averageStars : 0}
+                    readonly={true}
+                  />{" "}
+                  <span>{review?.length} (review)</span>
+                </div>
               </div>
               <table className="table-size">
                 <thead>

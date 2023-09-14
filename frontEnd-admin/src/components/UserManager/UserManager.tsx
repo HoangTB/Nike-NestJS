@@ -29,14 +29,7 @@ const UserManager: React.FC = () => {
       }
     } else {
       toast.info("Account is locked! Unlock to take action!", {
-        position: "top-right",
         autoClose: 500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
       });
     }
 

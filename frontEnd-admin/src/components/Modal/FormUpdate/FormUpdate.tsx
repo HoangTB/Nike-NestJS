@@ -194,7 +194,7 @@ const FormUpdate: React.FC<IFormUpdate> = ({
                   type="text"
                   className="form-control"
                   placeholder="Price"
-                  value={price!}
+                  value={price !== null ? price : ""}
                   onChange={(e) =>
                     setPrice(
                       e.target.value !== "" ? parseInt(e.target.value) : null
@@ -211,7 +211,7 @@ const FormUpdate: React.FC<IFormUpdate> = ({
                     )
                   }
                   className="form-control"
-                  value={news!}
+                  value={news !== null ? news : ""}
                 >
                   <option value="1">New Arrival</option>
                   <option value="2">None</option>
@@ -223,7 +223,7 @@ const FormUpdate: React.FC<IFormUpdate> = ({
                   type="text"
                   className="form-control"
                   placeholder="Quantity_inventory"
-                  value={quantityInventory!}
+                  value={quantityInventory !== null ? quantityInventory : ""}
                   onChange={(e) =>
                     setQuantityInventory(
                       e.target.value !== "" ? parseInt(e.target.value) : null

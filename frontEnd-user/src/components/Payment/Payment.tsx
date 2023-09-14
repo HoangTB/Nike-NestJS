@@ -68,7 +68,7 @@ const Payment: React.FC = () => {
     setIsShowForm(false);
   };
   return (
-    <div className="container">
+    <div className="container form-payment">
       {isShowForm && (
         <Thanks
           dataArr={dataArr}

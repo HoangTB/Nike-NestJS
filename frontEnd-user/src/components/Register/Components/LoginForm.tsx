@@ -9,6 +9,7 @@ import Loading from "../../Loading/Loading";
 import { IErrorsLogin, LoginRegisterFormProps } from "../../../types/Types";
 import { UserAPI } from "../../../models/LoginRegister";
 import { updateState } from "../../../store/slice/UpdateProSlice";
+// require("dotenv").config();
 const LoginForm: React.FC<LoginRegisterFormProps> = ({ setIsShow }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -74,30 +75,17 @@ const LoginForm: React.FC<LoginRegisterFormProps> = ({ setIsShow }) => {
       } else if (data.message === "Account has been locked") {
         setIsLoading(false);
         toast.warn("Account has been locked !", {
-          position: "top-right",
           autoClose: 500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
         });
       } else {
         setIsLoading(false);
         toast.error(data?.response?.data?.message, {
-          position: "top-right",
           autoClose: 500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
         });
       }
     }
   };
+
   return (
     <div className="d-flex flex-column justify-content-center align-items-center form-login form-login">
       <ToastContainer />
@@ -113,6 +101,7 @@ const LoginForm: React.FC<LoginRegisterFormProps> = ({ setIsShow }) => {
           FOR EVERYTHING ABOUT NIKE <br /> YOUR ACCOUNT
         </span>
       </div>
+
       <form onSubmit={handleSubmit}>
         <div className="login-panel-form">
           <input

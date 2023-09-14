@@ -31,6 +31,7 @@ export class Users {
   role: number;
   @Column({ default: 1 })
   status: number;
+
   @OneToOne(() => Orders, (orders) => orders.User)
   Order: Orders;
   @OneToMany(() => Favorites, (favorites) => favorites.User)

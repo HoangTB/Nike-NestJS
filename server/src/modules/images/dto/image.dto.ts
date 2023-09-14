@@ -1,3 +1,5 @@
+import { IsNotEmpty } from 'class-validator';
+
 export class ImageDTO {
   id?: number;
   image_1?: string;
