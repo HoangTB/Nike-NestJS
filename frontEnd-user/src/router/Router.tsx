@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import NotFound from "../pages/NotFound/NotFound";
 import DefaultLayout from "../layout/DefaultLayout/DefaultLayout";
@@ -13,7 +13,6 @@ import Payment from "../components/Payment/Payment";
 import History from "../components/History/History";
 import Profiles from "../components/Profiles/Profiles";
 import RequireLogin from "../middlewares/requireLogin";
-import { IProducts } from "../models/Product";
 import RequireUser from "../middlewares/requireUser";
 
 const Router: React.FC = () => {

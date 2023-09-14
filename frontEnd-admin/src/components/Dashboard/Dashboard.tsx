@@ -3,12 +3,12 @@ import Chart from "react-google-charts";
 import "./Dashboard.css";
 import { HistoryAPIServer, IHistory } from "../../models/History";
 import { useSelector } from "react-redux";
-import { IUser, UserAPIServer } from "../../models/User";
+// import { UserAPIServer } from "../../models/User";
 const Dashboard: React.FC = () => {
   const update = useSelector((status: any) => status.update);
 
   const [revenue, setRevenue] = useState<IHistory[]>();
-  const [users, setUsers] = useState<IUser[]>();
+  // const [users, setUsers] = useState<IUser[]>();
   const [comboData, setComboData] = useState<any[]>([
     ["Month", "Revenue ($)"],
     ["Tháng 1", 0],
@@ -29,9 +29,9 @@ const Dashboard: React.FC = () => {
     HistoryAPIServer.getRevenue().then((data) => {
       setRevenue(data);
     });
-    UserAPIServer.getAllUserOrder().then((data) => {
-      setUsers(data);
-    });
+    // UserAPIServer.getAllUserOrder().then((data) => {
+    //   setUsers(data);
+    // });
   }, [update]);
 
   useEffect(() => {
