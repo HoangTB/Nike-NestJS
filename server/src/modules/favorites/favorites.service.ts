@@ -46,7 +46,7 @@ export class FavoriteService {
         return { message: 'The product is already in favorite' };
       }
     } catch (err) {
-      return { message: err.message };
+      return { message: 'Please Login !' };
     }
   }
   async deleteFavoriteID(id: number): Promise<{ message: string }> {

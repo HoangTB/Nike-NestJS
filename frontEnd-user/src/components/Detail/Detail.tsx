@@ -50,7 +50,6 @@ const Detail: React.FC = () => {
   if (totalStars) {
     averageStars = totalStars / review!.length;
   }
-  console.log(averageStars);
 
   const handleSizeClick = (e: any) => {
     setSelectedSizes([]);
@@ -140,24 +139,26 @@ const Detail: React.FC = () => {
   };
 
   const handleAddFavorite = async () => {
-    await FavoriteAPI.getFavoriteID(Number(user?.id));
+    const userFavorite = await FavoriteAPI.getFavoriteID(Number(user?.id));
+    console.log(userFavorite);
+    if (userFavorite) {
+      const favoriteValue: IFavorite = {
+        user_id: Number(user?.id),
+        product_id: Number(params.id),
+      };
 
-    const favoriteValue: IFavorite = {
-      user_id: Number(user?.id),
-      product_id: Number(params.id),
-    };
-
-    FavoriteAPI.createFavorite(favoriteValue)
-      .then((res: any) =>
-        toast.success(res.message, {
-          autoClose: 500,
-        })
-      )
-      .catch((error: any) =>
-        toast.error(error.response.data.message, {
-          autoClose: 500,
-        })
-      );
+      FavoriteAPI.createFavorite(favoriteValue)
+        .then((res: any) =>
+          toast.success(res.message, {
+            autoClose: 500,
+          })
+        )
+        .catch((error: any) =>
+          toast.error(error.response.data.message, {
+            autoClose: 500,
+          })
+        );
+    }
   };
   return (
     <div className="container1 forms">

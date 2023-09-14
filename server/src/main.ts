@@ -13,6 +13,7 @@ async function bootstrap() {
     'http://localhost:3000',
     'http://localhost:5000',
     'https://nike-user.onrender.com',
+    'https://nike-admin-7utd.onrender.com',
   ];
   const corsOptions = {
     origin: corsOrigin,
