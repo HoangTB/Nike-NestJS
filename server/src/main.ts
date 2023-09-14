@@ -6,7 +6,6 @@ import * as cors from 'cors';
 import { ValidationPipe } from '@nestjs/common/pipes';
 require('dotenv').config();
 const PORT = process.env.APP_PORT;
-const HOST = process.env.APP_HOST;
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const corsOrigin = [
@@ -26,8 +25,8 @@ async function bootstrap() {
   app.use(morgan('dev'));
   app.use(cookieParser());
   app.useGlobalPipes(new ValidationPipe());
-  await app.listen(PORT, HOST, () => {
-    console.log(`http://${HOST}:${PORT}`);
+  await app.listen(PORT, () => {
+    console.log(`http://localhost:${PORT}`);
   });
 }
 bootstrap();
