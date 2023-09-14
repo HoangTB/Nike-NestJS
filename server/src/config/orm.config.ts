@@ -26,5 +26,5 @@ export const config: MysqlConnectionOptions = {
     Products,
     Users,
   ],
-  synchronize: true,
+  synchronize: false,
 };
