@@ -1,7 +1,7 @@
 import axios, { AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
 const axiosClient = axios.create({
-  baseURL: "https://server-0169.onrender.com/",
+  baseURL: "hhttp://localhost:8080/",
   headers: {
     "Content-Type": "application/json",
   },

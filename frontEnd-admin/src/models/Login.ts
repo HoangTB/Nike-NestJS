@@ -23,7 +23,7 @@ export interface ILogin {
 
 export class Login {
   static async LoginAdmin(param: ILoginAdmin): Promise<ILogin> {
-    const url: string = "https://server-0169.onrender.com/api/v1/users/login";
+    const url: string = "http://localhost:8080/api/v1/users/login";
     const response: ILogin = await axios.post(url, param);
 
     return response;

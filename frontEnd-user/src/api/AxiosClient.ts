@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import jwtDecode from "jwt-decode";
 
 const axiosClient = axios.create({
-  baseURL: "https://server-0169.onrender.com/",
+  baseURL: "http://localhost:8080/",
   headers: {
     "Content-Type": "application/json",
   },
@@ -14,7 +14,7 @@ axios.defaults.withCredentials = true;
 const refreshToken = async () => {
   try {
     const res = await axios.post(
-      "https://server-0169.onrender.com/api/v1/users/refresh-token",
+      "http://localhost:8080/api/v1/users/refresh-token",
       {
         withCredentials: true,
       }
